@@ -1,0 +1,23 @@
+name: "build"
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: "Install Bats"
+        run: sudo apt-get install bats
+      - name: "Install Bats Support"
+        run: bash .github/workflows/install/bats-support.sh
+      - name: "Install Go"
+        run: bash .github/workflows/install/go.sh
+      - name: "Install Go Packages"
+        run: go get ./...
+      - name: "Build Keysmith"
+        run: go build
+      - name: "Test Keysmith"
+        run: bats e2e/test.bats
