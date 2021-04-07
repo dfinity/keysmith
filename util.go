@@ -30,13 +30,8 @@ type ECPrivKey struct {
 	PublicKey     asn1.BitString        `asn1:"optional,explicit,tag:1"`
 }
 
-type ECPubKeyMetadata struct {
-	ECPubKeyOID   asn1.ObjectIdentifier
-	NamedCurveOID asn1.ObjectIdentifier
-}
-
 type ECPubKey struct {
-	Metadata  ECPubKeyMetadata
+	Metadata  []asn1.ObjectIdentifier
 	PublicKey asn1.BitString
 }
 
@@ -138,9 +133,9 @@ func EncodeECPubKey(pubKey *btcec.PublicKey) ([]byte, error) {
 	curve := btcec.S256()
 	point := pubKey.ToECDSA()
 	return asn1.Marshal(ECPubKey{
-		Metadata: ECPubKeyMetadata{
-			ECPubKeyOID:   asn1.ObjectIdentifier{1, 2, 840, 10045, 2, 1},
-			NamedCurveOID: SECP256K1(),
+		Metadata: []asn1.ObjectIdentifier{
+			asn1.ObjectIdentifier{1, 2, 840, 10045, 2, 1},
+			SECP256K1(),
 		},
 		PublicKey: asn1.BitString{
 			Bytes: elliptic.Marshal(curve, point.X, point.Y),
