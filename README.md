@@ -12,29 +12,16 @@ go get github.com/enzoh/keysmith
 
 ## Usage
 
-Write your mnemonic seed phrase to a file.
 ```text
-echo 'verb bottom twelve symptom plastic believe beach cargo inherit viable dice loop' > seed.txt
-```
+usage: keysmith <command> [<args>]
 
-Generate a PEM file from your seed file.
-```
-keysmith private-key -f seed.txt -o identity.pem
-```
+Available Commands:
+    generate            Generate your mnemonic seed.
+    private-key         Write your private key to a file.
+    x-public-key        Print your extended public key.
+    public-key          Print your public key.
+    legacy-address      Print your legacy address.
+    principal           Print your principal identifier.
+    account             Print your account identifier.
 
-Inspect the contents of your pem file.
-```
-cat identity.pem
-```
-
-Verify the contents of PEM file match what you would expect.
-```
------BEGIN EC PARAMETERS-----
-BgUrgQQACg==
------END EC PARAMETERS-----
------BEGIN EC PRIVATE KEY-----
-MHQCAQEEIAgy7nZEcVHkQ4Z1Kdqby8SwyAiyKDQmtbEHTIM+WNeBoAcGBSuBBAAK
-oUQDQgAEgO87rJ1ozzdMvJyZQ+GABDqUxGLvgnAnTlcInV3NuhuPv4O3VGzMGzeB
-N3d26cRxD99TPtm8uo2OuzKhSiq6EQ==
------END EC PRIVATE KEY-----
 ```
