@@ -23,5 +23,4 @@ Available Commands:
     legacy-address      Print your legacy address.
     principal           Print your principal identifier.
     account             Print your account identifier.
-
 ```
