@@ -7,6 +7,7 @@ import (
 	"encoding/asn1"
 	"encoding/base32"
 	"encoding/binary"
+	"encoding/hex"
 	"encoding/pem"
 	"fmt"
 	"hash/crc32"
@@ -105,7 +106,15 @@ func ECPubKeyToPrincipal(pubKey *btcec.PublicKey) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return SelfAuthenticating(der), nil
+	return DisplayPrincipal(SelfAuthenticating(der)), nil
+}
+
+func ECPubKeyToAccount(pubKey *btcec.PublicKey) (string, error) {
+	der, err := EncodeECPubKey(pubKey)
+	if err != nil {
+		return "", err
+	}
+	return DisplayAccount(DeriveAccount(der)), nil
 }
 
 func EncodeECParams() ([]byte, error) {
@@ -143,15 +152,32 @@ func SECP256K1() asn1.ObjectIdentifier {
 	return asn1.ObjectIdentifier{1, 3, 132, 0, 10}
 }
 
-func SelfAuthenticating(der []byte) string {
-	digest := sha256.Sum224(der)
+func SelfAuthenticating(der []byte) []byte {
+	hash := sha256.Sum224(der)
 	tag := []byte{2}
-	data := append(digest[:], tag...)
+	return append(hash[:], tag...)
+}
+
+func DeriveAccount(der []byte) []byte {
+	hash := sha256.New224()
+	hash.Write([]byte("\x0Aaccount-id"))
+	hash.Write(SelfAuthenticating(der))
+	hash.Write(make([]byte, 32))
+	return hash.Sum(nil)
+}
+
+func DisplayPrincipal(data []byte) string {
 	crc := make([]byte, 4)
 	binary.BigEndian.PutUint32(crc, crc32.ChecksumIEEE(data))
 	encoder := base32.StdEncoding.WithPadding(base32.NoPadding)
 	str := encoder.EncodeToString(append(crc, data...))
 	return strings.Join(SplitN(strings.ToLower(str), 5), "-")
+}
+
+func DisplayAccount(data []byte) string {
+	crc := make([]byte, 4)
+	binary.BigEndian.PutUint32(crc, crc32.ChecksumIEEE(data))
+	return hex.EncodeToString(append(crc, data...))
 }
 
 func SplitN(str string, n int) []string {

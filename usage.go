@@ -14,6 +14,7 @@ Available Commands:
     %s          Print your public key.
     %s             Print your legacy address.
     %s           Print your principal identifier.
+    %s             Print your account identifier.
 `,
 		GENERATE_CMD,
 		PRIVATE_KEY_CMD,
@@ -21,5 +22,6 @@ Available Commands:
 		PUBLIC_KEY_CMD,
 		ADDRESS_CMD,
 		PRINCIPAL_CMD,
+		ACCOUNT_CMD,
 	)
 }

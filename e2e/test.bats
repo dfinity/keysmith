@@ -201,3 +201,24 @@ TiijK7kVlgFK8C24XOgK1DIXTVg7cw==
     assert_command $keysmith principal -i=7
     assert_eq "7dm5n-v2brn-p2mla-3t5cw-ppdog-ro5fo-4psh3-zotg2-ix6or-26au2-iae"
 }
+
+@test "Can derive the account" {
+    assert_command $keysmith account
+    assert_eq "53a3ef3b11b69c6411cd1667970e24577c857acf3cdd67436656c75d4ddd3cc7"
+    assert_command $keysmith account -i=0
+    assert_eq "53a3ef3b11b69c6411cd1667970e24577c857acf3cdd67436656c75d4ddd3cc7"
+    assert_command $keysmith account -i=1
+    assert_eq "6bf62b34a4eeb32721aeb99fe598d760ca252a0324155fc8b0ef203f3fc620cc"
+    assert_command $keysmith account -i=2
+    assert_eq "2f1a51eadb26c0dcee782a8069018abdcce2c60a386ad9c0351ac4328d7346d8"
+    assert_command $keysmith account -i=3
+    assert_eq "927e01c4b46c7f4d3363c9823de9af067eb0f3e13e7b4cdb455bedbe7268bf0e"
+    assert_command $keysmith account -i=4
+    assert_eq "2b84c97f17ea887eb0374d14db1402867879a163c4799583327bd38afeb93d51"
+    assert_command $keysmith account -i=5
+    assert_eq "e29bf07177868d4c43b08857eb47dd99991aafafa918290e7a2561deab054aa1"
+    assert_command $keysmith account -i=6
+    assert_eq "9fed555b071f02563c0b24a3a70f5b2a1a863b97b80717da70e4816d1edc47e0"
+    assert_command $keysmith account -i=7
+    assert_eq "91e6f4b6bb528d8a26288cbc677407e09fb19493a567aaae7589ac0b1d03f9dc"
+}

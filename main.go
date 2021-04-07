@@ -28,6 +28,8 @@ func main() {
 		err = NewAddressCmd().Run()
 	case PRINCIPAL_CMD:
 		err = NewPrincipalCmd().Run()
+	case ACCOUNT_CMD:
+		err = NewAccountCmd().Run()
 	default:
 		fmt.Fprintf(os.Stderr, Usage())
 		os.Exit(1)
