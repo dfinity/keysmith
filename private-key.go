@@ -45,19 +45,8 @@ func (cmd *PrivateKeyCmd) Run() error {
 	if err != nil {
 		return err
 	}
-	masterXPrivKey, err := DeriveMasterXPrivKey(seed)
-	if err != nil {
-		return err
-	}
-	masterXPrivKey0, err := masterXPrivKey.Child(0)
-	if err != nil {
-		return err
-	}
-	childXPrivKey, err := masterXPrivKey0.Child(uint32(*cmd.Args.Index))
-	if err != nil {
-		return err
-	}
-	childECPrivKey, err := childXPrivKey.ECPrivKey()
+	path := []uint32{0, uint32(*cmd.Args.Index)}
+	childECPrivKey, _, err := DeriveChildECKeyPair(seed, path)
 	if err != nil {
 		return err
 	}

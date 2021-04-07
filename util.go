@@ -50,7 +50,10 @@ func LoadSeed(seedFile string, protected bool) ([]byte, error) {
 		}
 	}
 	mnemonic = bytes.TrimSuffix(mnemonic, []byte("\n"))
-	return bip39.NewSeedWithErrorChecking(string(mnemonic), string(password))
+	return bip39.NewSeedWithErrorChecking(
+		string(mnemonic),
+		string(password),
+	)
 }
 
 func DeriveMasterXPrivKey(seed []byte) (*hdkeychain.ExtendedKey, error) {
@@ -72,6 +75,28 @@ func DeriveMasterXPrivKey(seed []byte) (*hdkeychain.ExtendedKey, error) {
 		}
 	}
 	return masterXPrivKey, nil
+}
+
+func DeriveChildECKeyPair(
+	seed []byte,
+	path []uint32,
+) (*btcec.PrivateKey, *btcec.PublicKey, error) {
+	childXPrivKey, err := DeriveMasterXPrivKey(seed)
+	if err != nil {
+		return nil, nil, err
+	}
+	for _, i := range path {
+		childXPrivKey, err = childXPrivKey.Child(i)
+		if err != nil {
+			return nil, nil, err
+		}
+	}
+	childECPrivKey, err := childXPrivKey.ECPrivKey()
+	if err != nil {
+		return nil, nil, err
+	}
+	childECPubKey := childECPrivKey.PubKey()
+	return childECPrivKey, childECPubKey, nil
 }
 
 func ECPrivKeyToPEM(privKey *btcec.PrivateKey) ([]byte, error) {

@@ -38,23 +38,8 @@ func (cmd *LegacyAddressCmd) Run() error {
 	if err != nil {
 		return err
 	}
-	masterXPrivKey, err := DeriveMasterXPrivKey(seed)
-	if err != nil {
-		return err
-	}
-	masterXPrivKey0, err := masterXPrivKey.Child(0)
-	if err != nil {
-		return err
-	}
-	childXPrivKey, err := masterXPrivKey0.Child(uint32(*cmd.Args.Index))
-	if err != nil {
-		return err
-	}
-	childXPubKey, err := childXPrivKey.Neuter()
-	if err != nil {
-		return err
-	}
-	childECPubKey, err := childXPubKey.ECPubKey()
+	path := []uint32{0, uint32(*cmd.Args.Index)}
+	_, childECPubKey, err := DeriveChildECKeyPair(seed, path)
 	if err != nil {
 		return err
 	}
