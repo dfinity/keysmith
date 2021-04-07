@@ -9,30 +9,30 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 )
 
-const ADDRESS_CMD = "address"
+const LEGACY_ADDRESS_CMD = "legacy-address"
 
-type AddressCmd struct {
+type LegacyAddressCmd struct {
 	FlagSet *flag.FlagSet
-	Args    *AddressCmdArgs
+	Args    *LegacyAddressCmdArgs
 }
 
-type AddressCmdArgs struct {
+type LegacyAddressCmdArgs struct {
 	SeedFile  *string
 	Index     *uint
 	Protected *bool
 }
 
-func NewAddressCmd() *AddressCmd {
-	fset := flag.NewFlagSet(ADDRESS_CMD, flag.ExitOnError)
-	args := &AddressCmdArgs{
+func NewLegacyAddressCmd() *LegacyAddressCmd {
+	fset := flag.NewFlagSet(LEGACY_ADDRESS_CMD, flag.ExitOnError)
+	args := &LegacyAddressCmdArgs{
 		SeedFile:  fset.String("f", "seed.txt", "Seed file."),
 		Index:     fset.Uint("i", 0, "Child index."),
 		Protected: fset.Bool("p", false, "Password protection."),
 	}
-	return &AddressCmd{fset, args}
+	return &LegacyAddressCmd{fset, args}
 }
 
-func (cmd *AddressCmd) Run() error {
+func (cmd *LegacyAddressCmd) Run() error {
 	cmd.FlagSet.Parse(os.Args[2:])
 	seed, err := LoadSeed(*cmd.Args.SeedFile, *cmd.Args.Protected)
 	if err != nil {

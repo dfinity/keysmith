@@ -160,24 +160,24 @@ TiijK7kVlgFK8C24XOgK1DIXTVg7cw==
     assert_eq "04c4935f149960d699feeff21c0db88df001d8674daa05f653f97dd58e4eaced9b6efb82c25c58e0ebc7094e28a32bb91596014af02db85ce80ad432174d583b73"
 }
 
-@test "Can derive the address" {
-    assert_command $keysmith address
+@test "Can derive the legacy address" {
+    assert_command $keysmith legacy-address
     assert_eq "abde4f2523cc796bfd63564124b1c9b577c183b3"
-    assert_command $keysmith address -i=0
+    assert_command $keysmith legacy-address -i=0
     assert_eq "abde4f2523cc796bfd63564124b1c9b577c183b3"
-    assert_command $keysmith address -i=1
+    assert_command $keysmith legacy-address -i=1
     assert_eq "0b98ad668da5702f2d127c8de01cbd0de3ed5ce8"
-    assert_command $keysmith address -i=2
+    assert_command $keysmith legacy-address -i=2
     assert_eq "a5ebdb7665b68446328e8356c1808db3fc068d93"
-    assert_command $keysmith address -i=3
+    assert_command $keysmith legacy-address -i=3
     assert_eq "50a7bc9a4d205a8ce96e6c1bd3a6543f6acb19b4"
-    assert_command $keysmith address -i=4
+    assert_command $keysmith legacy-address -i=4
     assert_eq "985f1a72ebf6580770d9047d78823e8be5777a39"
-    assert_command $keysmith address -i=5
+    assert_command $keysmith legacy-address -i=5
     assert_eq "6c22e8745c81b5cffcc0b12383d3668623c40172"
-    assert_command $keysmith address -i=6
+    assert_command $keysmith legacy-address -i=6
     assert_eq "465111daace75b765d2df70619787e0f5bec2e82"
-    assert_command $keysmith address -i=7
+    assert_command $keysmith legacy-address -i=7
     assert_eq "db6de8140a50b31ed18494e93b03cfe5ba082d23"
 }
 

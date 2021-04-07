@@ -12,7 +12,7 @@ Available Commands:
     %s         Write your private key to a file.
     %s        Print your extended public key.
     %s          Print your public key.
-    %s             Print your legacy address.
+    %s      Print your legacy address.
     %s           Print your principal identifier.
     %s             Print your account identifier.
 `,
@@ -20,7 +20,7 @@ Available Commands:
 		PRIVATE_KEY_CMD,
 		X_PUBLIC_KEY_CMD,
 		PUBLIC_KEY_CMD,
-		ADDRESS_CMD,
+		LEGACY_ADDRESS_CMD,
 		PRINCIPAL_CMD,
 		ACCOUNT_CMD,
 	)

@@ -24,8 +24,8 @@ func main() {
 		err = NewXPublicKeyCmd().Run()
 	case PUBLIC_KEY_CMD:
 		err = NewPublicKeyCmd().Run()
-	case ADDRESS_CMD:
-		err = NewAddressCmd().Run()
+	case LEGACY_ADDRESS_CMD:
+		err = NewLegacyAddressCmd().Run()
 	case PRINCIPAL_CMD:
 		err = NewPrincipalCmd().Run()
 	case ACCOUNT_CMD:
