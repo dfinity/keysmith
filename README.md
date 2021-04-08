@@ -16,11 +16,12 @@ go get github.com/enzoh/keysmith
 usage: keysmith <command> [<args>]
 
 Available Commands:
+    account             Print your account identifier.
     generate            Generate your mnemonic seed.
-    private-key         Write your private key to a file.
-    x-public-key        Print your extended public key.
-    public-key          Print your public key.
     legacy-address      Print your legacy address.
     principal           Print your principal identifier.
-    account             Print your account identifier.
+    private-key         Write your private key to a file.
+    public-key          Print your public key.
+    version             Print the version number.
+    x-public-key        Print your extended public key.
 ```
