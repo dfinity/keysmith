@@ -16,20 +16,22 @@ func main() {
 	// Run the subcommand.
 	var err error
 	switch os.Args[1] {
+	case ACCOUNT_CMD:
+		err = NewAccountCmd().Run()
 	case GENERATE_CMD:
 		err = NewGenerateCmd().Run()
-	case PRIVATE_KEY_CMD:
-		err = NewPrivateKeyCmd().Run()
-	case X_PUBLIC_KEY_CMD:
-		err = NewXPublicKeyCmd().Run()
-	case PUBLIC_KEY_CMD:
-		err = NewPublicKeyCmd().Run()
 	case LEGACY_ADDRESS_CMD:
 		err = NewLegacyAddressCmd().Run()
 	case PRINCIPAL_CMD:
 		err = NewPrincipalCmd().Run()
-	case ACCOUNT_CMD:
-		err = NewAccountCmd().Run()
+	case PRIVATE_KEY_CMD:
+		err = NewPrivateKeyCmd().Run()
+	case PUBLIC_KEY_CMD:
+		err = NewPublicKeyCmd().Run()
+	case VERSION_CMD:
+		err = NewVersionCmd().Run()
+	case X_PUBLIC_KEY_CMD:
+		err = NewXPublicKeyCmd().Run()
 	default:
 		fmt.Fprintf(os.Stderr, Usage())
 		os.Exit(1)
