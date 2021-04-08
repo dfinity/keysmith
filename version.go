@@ -7,9 +7,9 @@ import (
 const VERSION_CMD = "version"
 
 var (
-	MAJOR = 1
-	MINOR = 2
-	PATCH = 0
+	MAJOR = "1"
+	MINOR = "2"
+	PATCH = "0"
 	BUILD = "unknown"
 )
 
@@ -21,6 +21,6 @@ func NewVersionCmd() *VersionCmd {
 }
 
 func (cmd *VersionCmd) Run() error {
-	fmt.Printf("%d.%d.%d-%s\n", MAJOR, MINOR, PATCH, BUILD)
+	fmt.Printf("%s.%s.%s-%s\n", MAJOR, MINOR, PATCH, BUILD)
 	return nil
 }
