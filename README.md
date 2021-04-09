@@ -1,13 +1,13 @@
 # Keysmith
 
-> Hierarchical Deterministic Key Derivation for the Internet Computer 
+> Hierarchical Deterministic Key Derivation for the Internet Computer
 
-[![Build Status](https://github.com/enzoh/keysmith/workflows/build/badge.svg)](https://github.com/enzoh/keysmith/actions?query=workflow%3Abuild)
+[![Build Status](https://github.com/dfinity/keysmith/workflows/build/badge.svg)](https://github.com/dfinity/keysmith/actions?query=workflow%3Abuild)
 
 ## Install
 
 ```
-go get github.com/enzoh/keysmith
+go get github.com/dfinity/keysmith
 ```
 
 ## Usage
