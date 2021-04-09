@@ -3,6 +3,15 @@ package main
 import (
 	"fmt"
 	"os"
+
+	"github.com/enzoh/keysmith/cmd"
+)
+
+var (
+	MAJOR = "1"
+	MINOR = "2"
+	PATCH = "0"
+	BUILD = "unknown"
 )
 
 func main() {
@@ -16,22 +25,22 @@ func main() {
 	// Run the subcommand.
 	var err error
 	switch os.Args[1] {
-	case ACCOUNT_CMD:
-		err = NewAccountCmd().Run()
-	case GENERATE_CMD:
-		err = NewGenerateCmd().Run()
-	case LEGACY_ADDRESS_CMD:
-		err = NewLegacyAddressCmd().Run()
-	case PRINCIPAL_CMD:
-		err = NewPrincipalCmd().Run()
-	case PRIVATE_KEY_CMD:
-		err = NewPrivateKeyCmd().Run()
-	case PUBLIC_KEY_CMD:
-		err = NewPublicKeyCmd().Run()
-	case VERSION_CMD:
-		err = NewVersionCmd().Run()
-	case X_PUBLIC_KEY_CMD:
-		err = NewXPublicKeyCmd().Run()
+	case cmd.ACCOUNT_CMD:
+		err = cmd.NewAccountCmd().Run()
+	case cmd.GENERATE_CMD:
+		err = cmd.NewGenerateCmd().Run()
+	case cmd.LEGACY_ADDRESS_CMD:
+		err = cmd.NewLegacyAddressCmd().Run()
+	case cmd.PRINCIPAL_CMD:
+		err = cmd.NewPrincipalCmd().Run()
+	case cmd.PRIVATE_KEY_CMD:
+		err = cmd.NewPrivateKeyCmd().Run()
+	case cmd.PUBLIC_KEY_CMD:
+		err = cmd.NewPublicKeyCmd().Run()
+	case cmd.VERSION_CMD:
+		err = cmd.NewVersionCmd(version()).Run()
+	case cmd.X_PUBLIC_KEY_CMD:
+		err = cmd.NewXPublicKeyCmd().Run()
 	default:
 		fmt.Fprintf(os.Stderr, Usage())
 		os.Exit(1)
@@ -42,4 +51,8 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
 		os.Exit(1)
 	}
+}
+
+func version() string {
+	return fmt.Sprintf("%s.%s.%s-%s", MAJOR, MINOR, PATCH, BUILD)
 }

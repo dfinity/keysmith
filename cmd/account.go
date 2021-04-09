@@ -1,9 +1,13 @@
-package main
+package cmd
 
 import (
 	"flag"
 	"fmt"
 	"os"
+
+	"github.com/enzoh/keysmith/account"
+	"github.com/enzoh/keysmith/crypto"
+	"github.com/enzoh/keysmith/seed"
 )
 
 const ACCOUNT_CMD = "account"
@@ -31,19 +35,25 @@ func NewAccountCmd() *AccountCmd {
 
 func (cmd *AccountCmd) Run() error {
 	cmd.FlagSet.Parse(os.Args[2:])
-	seed, err := LoadSeed(*cmd.Args.SeedFile, *cmd.Args.Protected)
+	seed, err := seed.Load(*cmd.Args.SeedFile, *cmd.Args.Protected)
 	if err != nil {
 		return err
 	}
-	path := []uint32{0, uint32(*cmd.Args.Index)}
-	_, childECPubKey, err := DeriveChildECKeyPair(seed, path)
+	masterXPrivKey, err := crypto.DeriveMasterXPrivKey(seed)
 	if err != nil {
 		return err
 	}
-	output, err := ECPubKeyToAccount(childECPubKey)
+	_, childECPubKey, err := crypto.DeriveChildECKeyPair(
+		masterXPrivKey,
+		[]uint32{0, uint32(*cmd.Args.Index)},
+	)
 	if err != nil {
 		return err
 	}
-	fmt.Println(output)
+	accountId, err := account.FromECPubKey(childECPubKey)
+	if err != nil {
+		return err
+	}
+	fmt.Println(accountId.String())
 	return nil
 }

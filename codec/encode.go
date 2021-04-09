@@ -1,4 +1,4 @@
-package main
+package codec
 
 import (
 	"crypto/elliptic"
@@ -7,18 +7,6 @@ import (
 
 	"github.com/btcsuite/btcd/btcec"
 )
-
-type ECPrivKey struct {
-	Version       int
-	PrivateKey    []byte
-	NamedCurveOID asn1.ObjectIdentifier `asn1:"optional,explicit,tag:0"`
-	PublicKey     asn1.BitString        `asn1:"optional,explicit,tag:1"`
-}
-
-type ECPubKey struct {
-	Metadata  []asn1.ObjectIdentifier
-	PublicKey asn1.BitString
-}
 
 func ECPrivKeyToPEM(privKey *btcec.PrivateKey) ([]byte, error) {
 	der1, err := EncodeECParams()
@@ -71,8 +59,4 @@ func EncodeECPubKey(pubKey *btcec.PublicKey) ([]byte, error) {
 			Bytes: elliptic.Marshal(curve, point.X, point.Y),
 		},
 	})
-}
-
-func SECP256K1() asn1.ObjectIdentifier {
-	return asn1.ObjectIdentifier{1, 3, 132, 0, 10}
 }

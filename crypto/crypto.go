@@ -1,4 +1,4 @@
-package main
+package crypto
 
 import (
 	"github.com/btcsuite/btcd/btcec"
@@ -29,13 +29,11 @@ func DeriveMasterXPrivKey(seed []byte) (*hdkeychain.ExtendedKey, error) {
 }
 
 func DeriveChildECKeyPair(
-	seed []byte,
+	masterXPrivKey *hdkeychain.ExtendedKey,
 	path []uint32,
 ) (*btcec.PrivateKey, *btcec.PublicKey, error) {
-	childXPrivKey, err := DeriveMasterXPrivKey(seed)
-	if err != nil {
-		return nil, nil, err
-	}
+	childXPrivKey := masterXPrivKey
+	var err error
 	for _, i := range path {
 		childXPrivKey, err = childXPrivKey.Child(i)
 		if err != nil {

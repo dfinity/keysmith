@@ -1,9 +1,12 @@
-package main
+package cmd
 
 import (
 	"flag"
 	"fmt"
 	"os"
+
+	"github.com/enzoh/keysmith/crypto"
+	"github.com/enzoh/keysmith/seed"
 )
 
 const X_PUBLIC_KEY_CMD = "x-public-key"
@@ -29,11 +32,11 @@ func NewXPublicKeyCmd() *XPublicKeyCmd {
 
 func (cmd *XPublicKeyCmd) Run() error {
 	cmd.FlagSet.Parse(os.Args[2:])
-	seed, err := LoadSeed(*cmd.Args.SeedFile, *cmd.Args.Protected)
+	seed, err := seed.Load(*cmd.Args.SeedFile, *cmd.Args.Protected)
 	if err != nil {
 		return err
 	}
-	masterXPrivKey, err := DeriveMasterXPrivKey(seed)
+	masterXPrivKey, err := crypto.DeriveMasterXPrivKey(seed)
 	if err != nil {
 		return err
 	}

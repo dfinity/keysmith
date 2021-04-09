@@ -1,10 +1,14 @@
-package main
+package cmd
 
 import (
 	"flag"
 	"fmt"
 	"io/ioutil"
 	"os"
+
+	"github.com/enzoh/keysmith/codec"
+	"github.com/enzoh/keysmith/crypto"
+	"github.com/enzoh/keysmith/seed"
 )
 
 const PRIVATE_KEY_CMD = "private-key"
@@ -41,16 +45,22 @@ func (cmd *PrivateKeyCmd) Run() error {
 			*cmd.Args.OutputFile,
 		)
 	}
-	seed, err := LoadSeed(*cmd.Args.SeedFile, *cmd.Args.Protected)
+	seed, err := seed.Load(*cmd.Args.SeedFile, *cmd.Args.Protected)
 	if err != nil {
 		return err
 	}
-	path := []uint32{0, uint32(*cmd.Args.Index)}
-	childECPrivKey, _, err := DeriveChildECKeyPair(seed, path)
+	masterXPrivKey, err := crypto.DeriveMasterXPrivKey(seed)
 	if err != nil {
 		return err
 	}
-	output, err := ECPrivKeyToPEM(childECPrivKey)
+	childECPrivKey, _, err := crypto.DeriveChildECKeyPair(
+		masterXPrivKey,
+		[]uint32{0, uint32(*cmd.Args.Index)},
+	)
+	if err != nil {
+		return err
+	}
+	output, err := codec.ECPrivKeyToPEM(childECPrivKey)
 	if err != nil {
 		return err
 	}

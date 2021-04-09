@@ -1,10 +1,13 @@
-package main
+package cmd
 
 import (
 	"encoding/hex"
 	"flag"
 	"fmt"
 	"os"
+
+	"github.com/enzoh/keysmith/crypto"
+	"github.com/enzoh/keysmith/seed"
 )
 
 const PUBLIC_KEY_CMD = "public-key"
@@ -32,12 +35,18 @@ func NewPublicKeyCmd() *PublicKeyCmd {
 
 func (cmd *PublicKeyCmd) Run() error {
 	cmd.FlagSet.Parse(os.Args[2:])
-	seed, err := LoadSeed(*cmd.Args.SeedFile, *cmd.Args.Protected)
+	seed, err := seed.Load(*cmd.Args.SeedFile, *cmd.Args.Protected)
 	if err != nil {
 		return err
 	}
-	path := []uint32{0, uint32(*cmd.Args.Index)}
-	_, childECPubKey, err := DeriveChildECKeyPair(seed, path)
+	masterXPrivKey, err := crypto.DeriveMasterXPrivKey(seed)
+	if err != nil {
+		return err
+	}
+	_, childECPubKey, err := crypto.DeriveChildECKeyPair(
+		masterXPrivKey,
+		[]uint32{0, uint32(*cmd.Args.Index)},
+	)
 	if err != nil {
 		return err
 	}

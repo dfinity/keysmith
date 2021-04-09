@@ -1,4 +1,4 @@
-package main
+package seed
 
 import (
 	"bytes"
@@ -10,7 +10,7 @@ import (
 	"golang.org/x/term"
 )
 
-func LoadSeed(seedFile string, protected bool) ([]byte, error) {
+func Load(seedFile string, protected bool) ([]byte, error) {
 	mnemonic, err := ioutil.ReadFile(seedFile)
 	if err != nil {
 		return nil, err

@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"flag"
@@ -6,7 +6,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/enzoh/keysmith/crypto"
+	"github.com/enzoh/keysmith/seed"
+	eth "github.com/ethereum/go-ethereum/crypto"
 )
 
 const LEGACY_ADDRESS_CMD = "legacy-address"
@@ -34,16 +36,22 @@ func NewLegacyAddressCmd() *LegacyAddressCmd {
 
 func (cmd *LegacyAddressCmd) Run() error {
 	cmd.FlagSet.Parse(os.Args[2:])
-	seed, err := LoadSeed(*cmd.Args.SeedFile, *cmd.Args.Protected)
+	seed, err := seed.Load(*cmd.Args.SeedFile, *cmd.Args.Protected)
 	if err != nil {
 		return err
 	}
-	path := []uint32{0, uint32(*cmd.Args.Index)}
-	_, childECPubKey, err := DeriveChildECKeyPair(seed, path)
+	masterXPrivKey, err := crypto.DeriveMasterXPrivKey(seed)
 	if err != nil {
 		return err
 	}
-	address := crypto.PubkeyToAddress(*childECPubKey.ToECDSA())
+	_, childECPubKey, err := crypto.DeriveChildECKeyPair(
+		masterXPrivKey,
+		[]uint32{0, uint32(*cmd.Args.Index)},
+	)
+	if err != nil {
+		return err
+	}
+	address := eth.PubkeyToAddress(*childECPubKey.ToECDSA())
 	output := strings.ToLower(strings.TrimPrefix(address.String(), "0x"))
 	fmt.Println(output)
 	return nil

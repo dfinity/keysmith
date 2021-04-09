@@ -1,9 +1,13 @@
-package main
+package cmd
 
 import (
 	"flag"
 	"fmt"
 	"os"
+
+	"github.com/enzoh/keysmith/crypto"
+	"github.com/enzoh/keysmith/principal"
+	"github.com/enzoh/keysmith/seed"
 )
 
 const PRINCIPAL_CMD = "principal"
@@ -31,19 +35,25 @@ func NewPrincipalCmd() *PrincipalCmd {
 
 func (cmd *PrincipalCmd) Run() error {
 	cmd.FlagSet.Parse(os.Args[2:])
-	seed, err := LoadSeed(*cmd.Args.SeedFile, *cmd.Args.Protected)
+	seed, err := seed.Load(*cmd.Args.SeedFile, *cmd.Args.Protected)
 	if err != nil {
 		return err
 	}
-	path := []uint32{0, uint32(*cmd.Args.Index)}
-	_, childECPubKey, err := DeriveChildECKeyPair(seed, path)
+	masterXPrivKey, err := crypto.DeriveMasterXPrivKey(seed)
 	if err != nil {
 		return err
 	}
-	output, err := ECPubKeyToPrincipal(childECPubKey)
+	_, childECPubKey, err := crypto.DeriveChildECKeyPair(
+		masterXPrivKey,
+		[]uint32{0, uint32(*cmd.Args.Index)},
+	)
 	if err != nil {
 		return err
 	}
-	fmt.Println(output)
+	principalId, err := principal.FromECPubKey(childECPubKey)
+	if err != nil {
+		return err
+	}
+	fmt.Println(principalId.String())
 	return nil
 }
