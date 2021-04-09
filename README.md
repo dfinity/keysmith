@@ -1,6 +1,6 @@
 # Keysmith
 
-> A Supplementary CLI for DFINITY Seed Donors and Early Contributors
+> Hierarchical Deterministic Key Derivation for the Internet Computer 
 
 [![Build Status](https://github.com/enzoh/keysmith/workflows/build/badge.svg)](https://github.com/enzoh/keysmith/actions?query=workflow%3Abuild)
 
