@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/enzoh/keysmith/cmd"
+	"github.com/dfinity/keysmith/cmd"
 )
 
 func Usage() string {

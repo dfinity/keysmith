@@ -7,8 +7,8 @@ import (
 	"hash/crc32"
 
 	"github.com/btcsuite/btcd/btcec"
-	"github.com/enzoh/keysmith/codec"
-	"github.com/enzoh/keysmith/principal"
+	"github.com/dfinity/keysmith/codec"
+	"github.com/dfinity/keysmith/principal"
 )
 
 type AccountId interface {

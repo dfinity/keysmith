@@ -6,9 +6,9 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/enzoh/keysmith/codec"
-	"github.com/enzoh/keysmith/crypto"
-	"github.com/enzoh/keysmith/seed"
+	"github.com/dfinity/keysmith/codec"
+	"github.com/dfinity/keysmith/crypto"
+	"github.com/dfinity/keysmith/seed"
 )
 
 const PRIVATE_KEY_CMD = "private-key"

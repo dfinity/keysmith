@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/btcsuite/btcd/btcec"
-	"github.com/enzoh/keysmith/codec"
+	"github.com/dfinity/keysmith/codec"
 )
 
 type PrincipalId interface {

@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/enzoh/keysmith/account"
-	"github.com/enzoh/keysmith/crypto"
-	"github.com/enzoh/keysmith/seed"
+	"github.com/dfinity/keysmith/account"
+	"github.com/dfinity/keysmith/crypto"
+	"github.com/dfinity/keysmith/seed"
 )
 
 const ACCOUNT_CMD = "account"

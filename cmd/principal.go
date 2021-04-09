@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/enzoh/keysmith/crypto"
-	"github.com/enzoh/keysmith/principal"
-	"github.com/enzoh/keysmith/seed"
+	"github.com/dfinity/keysmith/crypto"
+	"github.com/dfinity/keysmith/principal"
+	"github.com/dfinity/keysmith/seed"
 )
 
 const PRINCIPAL_CMD = "principal"

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/enzoh/keysmith/cmd"
+	"github.com/dfinity/keysmith/cmd"
 )
 
 var (

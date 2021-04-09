@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/enzoh/keysmith/crypto"
-	"github.com/enzoh/keysmith/seed"
+	"github.com/dfinity/keysmith/crypto"
+	"github.com/dfinity/keysmith/seed"
 	eth "github.com/ethereum/go-ethereum/crypto"
 )
 

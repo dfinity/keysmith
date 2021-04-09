@@ -1,4 +1,4 @@
-module github.com/enzoh/keysmith
+module github.com/dfinity/keysmith
 
 go 1.15
 
