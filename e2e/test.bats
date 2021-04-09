@@ -16,7 +16,7 @@ teardown() {
 
 @test "Can print the version number" {
     assert_command $keysmith version
-    assert_match "^[0-9]+\.[0-9]+\.[0-9]+-[a-z]+$"
+    assert_match "^[0-9]+\.[0-9]+\.[0-9]+-[0-9a-z\-]+$"
 }
 
 @test "Can generate the seed phrase" {

@@ -1,22 +1,28 @@
 MAJOR ?= 1
-MINOR ?= 2
+MINOR ?= 3
 PATCH ?= 0
-BUILD ?= release
 
 LDFLAGS := -X=main.MAJOR=$(MAJOR)
 LDFLAGS += -X=main.MINOR=$(MINOR)
 LDFLAGS += -X=main.PATCH=$(PATCH)
-LDFLAGS += -X=main.BUILD=$(BUILD)
-
-GOFLAGS := -ldflags="$(LDFLAGS)"
 
 PRIVATE_KEY ?= $(HOME)/.openssl/private.key
 
 .PHONY: all
-all: release
+all: build
+
+.PHONY: build
+build:
+	$(eval BUILD ?= $(shell git describe --always --dirty))
+	$(eval LDFLAGS += -X=main.BUILD=$(BUILD))
+	$(eval GOFLAGS := -ldflags="$(LDFLAGS)")
+	go build $(GOFLAGS)
 
 .PHONY: release
 release:
+	$(eval BUILD ?= release)
+	$(eval LDFLAGS += -X=main.BUILD=$(BUILD))
+	$(eval GOFLAGS := -ldflags="$(LDFLAGS)")
 	mkdir -p release
 	GOOS=darwin GOARCH=amd64 go build $(GOFLAGS)
 	tar -c -f keysmith-darwin-amd64.tar.gz -z keysmith
@@ -35,4 +41,4 @@ release:
 
 .PHONY: clean
 clean:
-	rm -f -r release
+	rm -f -r keysmith release
