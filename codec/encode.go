@@ -31,7 +31,7 @@ func ECPrivKeyToPEM(privKey *btcec.PrivateKey) ([]byte, error) {
 }
 
 func EncodeECParams() ([]byte, error) {
-	return asn1.Marshal(SECP256K1())
+	return asn1.Marshal(Secp256k1())
 }
 
 func EncodeECPrivKey(privKey *btcec.PrivateKey) ([]byte, error) {
@@ -40,7 +40,7 @@ func EncodeECPrivKey(privKey *btcec.PrivateKey) ([]byte, error) {
 	return asn1.Marshal(ECPrivKey{
 		Version:       1,
 		PrivateKey:    privKey.D.Bytes(),
-		NamedCurveOID: SECP256K1(),
+		NamedCurveOID: Secp256k1(),
 		PublicKey: asn1.BitString{
 			Bytes: elliptic.Marshal(curve, point.X, point.Y),
 		},
@@ -53,7 +53,7 @@ func EncodeECPubKey(pubKey *btcec.PublicKey) ([]byte, error) {
 	return asn1.Marshal(ECPubKey{
 		Metadata: []asn1.ObjectIdentifier{
 			asn1.ObjectIdentifier{1, 2, 840, 10045, 2, 1},
-			SECP256K1(),
+			Secp256k1(),
 		},
 		PublicKey: asn1.BitString{
 			Bytes: elliptic.Marshal(curve, point.X, point.Y),
