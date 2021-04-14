@@ -16,14 +16,14 @@ type PrincipalId interface {
 	String() string
 }
 
-type selfAuthenticating struct {
+type SelfAuthenticating struct {
 	data []byte
 }
 
-func SelfAuthenticating(der []byte) PrincipalId {
+func NewSelfAuthenticating(der []byte) PrincipalId {
 	hash := sha256.Sum224(der)
 	data := append(hash[:], []byte{2}...)
-	return &selfAuthenticating{data: data}
+	return &SelfAuthenticating{data: data}
 }
 
 func FromECPubKey(pubKey *btcec.PublicKey) (PrincipalId, error) {
@@ -31,14 +31,14 @@ func FromECPubKey(pubKey *btcec.PublicKey) (PrincipalId, error) {
 	if err != nil {
 		return nil, err
 	}
-	return SelfAuthenticating(der), nil
+	return NewSelfAuthenticating(der), nil
 }
 
-func (principal *selfAuthenticating) Bytes() []byte {
+func (principal *SelfAuthenticating) Bytes() []byte {
 	return principal.data
 }
 
-func (principal *selfAuthenticating) String() string {
+func (principal *SelfAuthenticating) String() string {
 	return show(principal.data)
 }
 

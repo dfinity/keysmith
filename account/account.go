@@ -26,7 +26,7 @@ func FromECPubKey(pubKey *btcec.PublicKey) (AccountId, error) {
 	}
 	hash := sha256.New224()
 	hash.Write([]byte("\x0Aaccount-id"))
-	hash.Write(principal.SelfAuthenticating(der).Bytes())
+	hash.Write(principal.NewSelfAuthenticating(der).Bytes())
 	hash.Write(make([]byte, 32))
 	data := hash.Sum(nil)
 	return &accountId{data: data}, nil
