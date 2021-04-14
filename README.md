@@ -1,6 +1,6 @@
 # Keysmith
 
-> Client-Side Cryptography for the Internet Computer
+> Hierarchical Deterministic Key Derivation for the Internet Computer
 
 [![Build Status](https://github.com/dfinity/keysmith/workflows/build/badge.svg)](https://github.com/dfinity/keysmith/actions?query=workflow%3Abuild)
 
