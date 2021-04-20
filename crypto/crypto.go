@@ -7,6 +7,8 @@ import (
 	"github.com/ethereum/go-ethereum/accounts"
 )
 
+const DerivationPath = "m/44'/223'/0'"
+
 func DeriveMasterXPrivKey(seed []byte) (*hdkeychain.ExtendedKey, error) {
 	masterXPrivKey, err := hdkeychain.NewMaster(
 		seed,
@@ -15,7 +17,7 @@ func DeriveMasterXPrivKey(seed []byte) (*hdkeychain.ExtendedKey, error) {
 	if err != nil {
 		return nil, err
 	}
-	path, err := accounts.ParseDerivationPath("m/44'/223'/0'")
+	path, err := accounts.ParseDerivationPath(DerivationPath)
 	if err != nil {
 		return nil, err
 	}
@@ -30,15 +32,11 @@ func DeriveMasterXPrivKey(seed []byte) (*hdkeychain.ExtendedKey, error) {
 
 func DeriveChildECKeyPair(
 	masterXPrivKey *hdkeychain.ExtendedKey,
-	path []uint32,
+	i uint32,
 ) (*btcec.PrivateKey, *btcec.PublicKey, error) {
-	childXPrivKey := masterXPrivKey
-	var err error
-	for _, i := range path {
-		childXPrivKey, err = childXPrivKey.Child(i)
-		if err != nil {
-			return nil, nil, err
-		}
+	childXPrivKey, err := masterXPrivKey.Child(i)
+	if err != nil {
+		return nil, nil, err
 	}
 	childECPrivKey, err := childXPrivKey.ECPrivKey()
 	if err != nil {
