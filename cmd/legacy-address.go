@@ -44,14 +44,14 @@ func (cmd *LegacyAddressCmd) Run() error {
 	if err != nil {
 		return err
 	}
-	_, childECPubKey, err := crypto.DeriveChildECKeyPair(
+	_, grandchildECPubKey, err := crypto.DeriveGrandchildECKeyPair(
 		masterXPrivKey,
 		uint32(*cmd.Args.Index),
 	)
 	if err != nil {
 		return err
 	}
-	address := eth.PubkeyToAddress(*childECPubKey.ToECDSA())
+	address := eth.PubkeyToAddress(*grandchildECPubKey.ToECDSA())
 	output := strings.ToLower(strings.TrimPrefix(address.String(), "0x"))
 	fmt.Println(output)
 	return nil
