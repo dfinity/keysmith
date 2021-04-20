@@ -43,14 +43,18 @@ func (cmd *PublicKeyCmd) Run() error {
 	if err != nil {
 		return err
 	}
-	_, childECPubKey, err := crypto.DeriveChildECKeyPair(
-		masterXPrivKey,
-		[]uint32{0, uint32(*cmd.Args.Index)},
+	childXPrivKey, err := masterXPrivKey.Derive(0)
+	if err != nil {
+		return err
+	}
+	_, grandchildECPubKey, err := crypto.DeriveChildECKeyPair(
+		childXPrivKey,
+		uint32(*cmd.Args.Index),
 	)
 	if err != nil {
 		return err
 	}
-	output := hex.EncodeToString(childECPubKey.SerializeUncompressed())
+	output := hex.EncodeToString(grandchildECPubKey.SerializeUncompressed())
 	fmt.Println(output)
 	return nil
 }
