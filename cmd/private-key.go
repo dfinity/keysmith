@@ -53,14 +53,14 @@ func (cmd *PrivateKeyCmd) Run() error {
 	if err != nil {
 		return err
 	}
-	childECPrivKey, _, err := crypto.DeriveChildECKeyPair(
+	grandchildECPrivKey, _, err := crypto.DeriveGrandchildECKeyPair(
 		masterXPrivKey,
 		uint32(*cmd.Args.Index),
 	)
 	if err != nil {
 		return err
 	}
-	output, err := codec.ECPrivKeyToPEM(childECPrivKey)
+	output, err := codec.ECPrivKeyToPEM(grandchildECPrivKey)
 	if err != nil {
 		return err
 	}

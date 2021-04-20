@@ -30,7 +30,7 @@ func DeriveMasterXPrivKey(seed []byte) (*hdkeychain.ExtendedKey, error) {
 	return masterXPrivKey, nil
 }
 
-func DeriveChildECKeyPair(
+func DeriveGrandchildECKeyPair(
 	masterXPrivKey *hdkeychain.ExtendedKey,
 	i uint32,
 ) (*btcec.PrivateKey, *btcec.PublicKey, error) {
@@ -39,7 +39,7 @@ func DeriveChildECKeyPair(
 	if err != nil {
                 return nil, nil, err
         }
-	childXPrivKey, err := masterXPrivKey.Derive(i)
+	childXPrivKey, err = masterXPrivKey.Derive(i)
 	if err != nil {
 		return nil, nil, err
 	}

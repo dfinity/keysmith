@@ -43,7 +43,7 @@ func (cmd *PrincipalCmd) Run() error {
 	if err != nil {
 		return err
 	}
-	_, childECPubKey, err := crypto.DeriveChildECKeyPair(
+	_, grandchildECPubKey, err := crypto.DeriveGrandchildECKeyPair(
 		masterXPrivKey,
 		uint32(*cmd.Args.Index),
 	)
