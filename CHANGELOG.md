@@ -1,3 +1,7 @@
+## v1.3.0
+
+- Upgrade HD crypto library dependency.
+
 ## v1.2.0
 
 - Add `version` command to print the version number.
