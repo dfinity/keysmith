@@ -37,8 +37,8 @@ func DeriveGrandchildECKeyPair(
 	// First apply the change.
 	childXPrivKey, err := masterXPrivKey.Derive(0)
 	if err != nil {
-                return nil, nil, err
-        }
+		return nil, nil, err
+	}
 	grandchildXPrivKey, err := childXPrivKey.Derive(i)
 	if err != nil {
 		return nil, nil, err
