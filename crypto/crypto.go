@@ -39,14 +39,14 @@ func DeriveGrandchildECKeyPair(
 	if err != nil {
                 return nil, nil, err
         }
-	childXPrivKey, err = masterXPrivKey.Derive(i)
+	grandchildXPrivKey, err := childXPrivKey.Derive(i)
 	if err != nil {
 		return nil, nil, err
 	}
-	childECPrivKey, err := childXPrivKey.ECPrivKey()
+	grandchildECPrivKey, err := grandchildXPrivKey.ECPrivKey()
 	if err != nil {
 		return nil, nil, err
 	}
-	childECPubKey := childECPrivKey.PubKey()
-	return childECPrivKey, childECPubKey, nil
+	grandchildECPubKey := grandchildECPrivKey.PubKey()
+	return grandchildECPrivKey, grandchildECPubKey, nil
 }
