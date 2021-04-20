@@ -43,18 +43,14 @@ func (cmd *AccountCmd) Run() error {
 	if err != nil {
 		return err
 	}
-	childXPrivKey, err := masterXPrivKey.Derive(0)
-	if err != nil {
-		return err
-	}
-	_, grandchildECPubKey, err := crypto.DeriveChildECKeyPair(
-		childXPrivKey,
+	_, childECPubKey, err := crypto.DeriveChildECKeyPair(
+		masterXPrivKey,
 		uint32(*cmd.Args.Index),
 	)
 	if err != nil {
 		return err
 	}
-	accountId, err := account.FromECPubKey(grandchildECPubKey)
+	accountId, err := account.FromECPubKey(childECPubKey)
 	if err != nil {
 		return err
 	}

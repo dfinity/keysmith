@@ -43,18 +43,14 @@ func (cmd *PrincipalCmd) Run() error {
 	if err != nil {
 		return err
 	}
-	childXPrivKey, err := masterXPrivKey.Derive(0)
-	if err != nil {
-		return err
-	}
-	_, grandchildECPubKey, err := crypto.DeriveChildECKeyPair(
-		childXPrivKey,
+	_, childECPubKey, err := crypto.DeriveChildECKeyPair(
+		masterXPrivKey,
 		uint32(*cmd.Args.Index),
 	)
 	if err != nil {
 		return err
 	}
-	principalId, err := principal.FromECPubKey(grandchildECPubKey)
+	principalId, err := principal.FromECPubKey(childECPubKey)
 	if err != nil {
 		return err
 	}
