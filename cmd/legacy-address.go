@@ -44,7 +44,7 @@ func (cmd *LegacyAddressCmd) Run() error {
 	if err != nil {
 		return err
 	}
-	childXPrivKey, err := masterXPrivKey.Child(0)
+	childXPrivKey, err := masterXPrivKey.Derive(0)
 	if err != nil {
 		return err
 	}

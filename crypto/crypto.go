@@ -3,7 +3,7 @@ package crypto
 import (
 	"github.com/btcsuite/btcd/btcec"
 	"github.com/btcsuite/btcd/chaincfg"
-	"github.com/btcsuite/btcutil/hdkeychain"
+	"github.com/dfinity/go-hdkeychain"
 	"github.com/ethereum/go-ethereum/accounts"
 )
 
@@ -22,7 +22,7 @@ func DeriveMasterXPrivKey(seed []byte) (*hdkeychain.ExtendedKey, error) {
 		return nil, err
 	}
 	for _, i := range path {
-		masterXPrivKey, err = masterXPrivKey.Child(i)
+		masterXPrivKey, err = masterXPrivKey.Derive(i)
 		if err != nil {
 			return nil, err
 		}
@@ -34,7 +34,7 @@ func DeriveChildECKeyPair(
 	masterXPrivKey *hdkeychain.ExtendedKey,
 	i uint32,
 ) (*btcec.PrivateKey, *btcec.PublicKey, error) {
-	childXPrivKey, err := masterXPrivKey.Child(i)
+	childXPrivKey, err := masterXPrivKey.Derive(i)
 	if err != nil {
 		return nil, nil, err
 	}
