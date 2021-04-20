@@ -34,6 +34,11 @@ func DeriveChildECKeyPair(
 	masterXPrivKey *hdkeychain.ExtendedKey,
 	i uint32,
 ) (*btcec.PrivateKey, *btcec.PublicKey, error) {
+	// First apply the change.
+	childXPrivKey, err := masterXPrivKey.Derive(0)
+	if err != nil {
+                return nil, nil, err
+        }
 	childXPrivKey, err := masterXPrivKey.Derive(i)
 	if err != nil {
 		return nil, nil, err
