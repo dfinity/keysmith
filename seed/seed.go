@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 
+	"github.com/dfinity/keysmith/util"
 	"github.com/tyler-smith/go-bip39"
 	"golang.org/x/term"
 )
@@ -24,7 +25,7 @@ func Load(seedFile string, protected bool) ([]byte, error) {
 			return nil, err
 		}
 	}
-	mnemonic = bytes.TrimSuffix(mnemonic, []byte("\n"))
+	mnemonic = bytes.TrimSuffix(mnemonic, []byte(util.NewLine))
 	return bip39.NewSeedWithErrorChecking(
 		string(mnemonic),
 		string(password),

@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/dfinity/keysmith/cmd"
+	"github.com/dfinity/keysmith/util"
 )
 
 var (
@@ -48,7 +49,7 @@ func main() {
 
 	// Check if an error occurred.
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error: %v" + util.NewLine, err)
 		os.Exit(1)
 	}
 }
