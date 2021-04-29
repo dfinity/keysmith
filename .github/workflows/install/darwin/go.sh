@@ -13,7 +13,7 @@ case "$(uname -m)" in
         exit 1
 esac
 
-# Define version and tarball. 
+# Define version and tarball.
 VERSION="1.16"
 TARBALL="go${VERSION}.${GOOS}-${GOARCH}.tar.gz"
 
