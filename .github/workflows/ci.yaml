@@ -37,3 +37,12 @@ jobs:
         run: go build
       - name: "Test Keysmith"
         run: bats e2e/bash/test.bats
+  keysmith-windows:
+    runs-on: windows-latest
+    steps:
+      - name: "Install Go"
+        run: bash .github\workflows\install\windows\go.ps1
+      - name: "Install Go Packages"
+        run: go get ./...
+      - name: "Build Keysmith"
+        run: go build
