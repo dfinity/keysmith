@@ -42,7 +42,7 @@ jobs:
     steps:
       - name: "Install Go"
         run: |
-          & .github\workflows\install\windows\go.ps1
+          & .\.github\workflows\install\windows\go.ps1
       - name: "Install Go Packages"
         run: go get ./...
       - name: "Build Keysmith"
