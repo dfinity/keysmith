@@ -40,6 +40,8 @@ jobs:
   keysmith-windows:
     runs-on: windows-latest
     steps:
+      - name: "Get-Location"
+        run: Get-Location
       - name: "Get-ChildItem"
         run: Get-ChildItem
       - name: "Install Go"
