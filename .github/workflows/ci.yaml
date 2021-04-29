@@ -6,7 +6,9 @@ on:
   pull_request:
 jobs:
   keysmith-darwin:
-    runs-on: macos-latest
+    runs-on:
+      - macos-10.15
+      - macos-11.0
     steps:
       - uses: actions/checkout@v1
       - name: 'Install Bats'
@@ -22,7 +24,10 @@ jobs:
       - name: 'Test Keysmith'
         run: bats e2e/bash/test.bats
   keysmith-linux:
-    runs-on: ubuntu-latest
+    runs-on:
+      - ubuntu-16.04
+      - ubuntu-18.04
+      - ubuntu-20.04
     steps:
       - uses: actions/checkout@v1
       - name: 'Install Bats'
@@ -38,7 +43,9 @@ jobs:
       - name: 'Test Keysmith'
         run: bats e2e/bash/test.bats
   keysmith-windows:
-    runs-on: windows-latest
+    runs-on:
+      - windows-2016
+      - windows-2019
     steps:
       - uses: actions/checkout@v1
       - name: 'Install Go'

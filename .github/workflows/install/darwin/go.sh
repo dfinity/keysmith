@@ -1,7 +1,8 @@
 #!/bin/bash
 set -ex
+ARCH="$(uname -m)"
 VERSION="1.16"
-TARBALL="go${VERSION}.darwin-amd64.tar.gz"
+TARBALL="go${VERSION}.darwin-${ARCH}.tar.gz"
 pushd /tmp
 curl -L -O -s "https://storage.googleapis.com/golang/${TARBALL}"
 pushd /usr/local
