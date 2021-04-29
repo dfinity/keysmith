@@ -40,9 +40,9 @@ jobs:
   keysmith-windows:
     runs-on: windows-latest
     steps:
+      - uses: actions/checkout@v1
       - name: 'Install Go'
-        run: 'Get-ChildItem $env:GITHUB_ACTION_PATH'
-        shell: pwsh
+        run: powershell .github\workflows\install\windows\go.ps1
       - name: 'Install Go Packages'
         run: go get ./...
       - name: 'Build Keysmith'
