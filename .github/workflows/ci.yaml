@@ -20,7 +20,7 @@ jobs:
       - name: "Build Keysmith"
         run: go build
       - name: "Test Keysmith"
-        run: bats e2e/test.bats
+        run: bats e2e/bash/test.bats
   keysmith-linux:
     runs-on: ubuntu-latest
     steps:
@@ -36,4 +36,4 @@ jobs:
       - name: "Build Keysmith"
         run: go build
       - name: "Test Keysmith"
-        run: bats e2e/test.bats
+        run: bats e2e/bash/test.bats
