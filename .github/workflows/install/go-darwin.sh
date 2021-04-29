@@ -3,7 +3,7 @@ set -ex
 VERSION="1.16"
 TARBALL="go${VERSION}.darwin-amd64.tar.gz"
 pushd /tmp
-curl -L -O ${TARBALL} -s "https://storage.googleapis.com/golang/${TARBALL}"
+curl -L -O -s "https://storage.googleapis.com/golang/${TARBALL}"
 pushd /usr/local
 tar -f /tmp/${TARBALL} -x
 popd

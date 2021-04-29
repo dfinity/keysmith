@@ -3,7 +3,7 @@ set -ex
 VERSION="0.3.0"
 TARBALL="v${VERSION}.tar.gz"
 pushd /tmp
-curl -L -O ${TARBALL} -s "https://github.com/ztombol/bats-support/archive/${TARBALL}"
+curl -L -O -s "https://github.com/ztombol/bats-support/archive/${TARBALL}"
 pushd /usr/local/lib
 tar -f /tmp/${TARBALL} -x
 ln -s bats-support-${VERSION} bats-support
