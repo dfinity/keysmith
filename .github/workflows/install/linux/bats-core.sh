@@ -1,5 +1,5 @@
 #!/bin/bash
 set -ex
 
-# Install Bats.
+# Install Bats Core.
 sudo apt-get install -y bats

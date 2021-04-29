@@ -1,6 +1,6 @@
 #!/bin/bash
 set -ex
 
-# Install Bats.
+# Install Bats Core.
 brew unlink bats
 brew install bats-core

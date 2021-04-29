@@ -13,8 +13,8 @@ jobs:
           - macos-latest
     steps:
       - uses: actions/checkout@v1
-      - name: 'Install Bats'
-        run: ./.github/workflows/install/darwin/bats.sh
+      - name: 'Install Bats Core'
+        run: ./.github/workflows/install/darwin/bats-core.sh
       - name: 'Install Bats Support'
         run: ./.github/workflows/install/darwin/bats-support.sh
       - name: 'Install Go'
@@ -35,8 +35,8 @@ jobs:
           - ubuntu-20.04
     steps:
       - uses: actions/checkout@v1
-      - name: 'Install Bats'
-        run: ./.github/workflows/install/linux/bats.sh
+      - name: 'Install Bats Core'
+        run: ./.github/workflows/install/linux/bats-core.sh
       - name: 'Install Bats Support'
         run: ./.github/workflows/install/linux/bats-support.sh
       - name: 'Install Go'
