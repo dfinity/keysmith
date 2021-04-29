@@ -42,8 +42,9 @@ jobs:
     steps:
       - name: "Get-Location"
         run: Get-Location
-      - name: "Get-ChildItem D:\a\keysmith\keysmith\.github\workflows\install\windows\go.ps1"
-        run: Get-ChildItem D:\a\keysmith\keysmith\.github\workflows\install\windows\go.ps1
+      - name: "Get-ChildItem"
+        run: |
+          Get-ChildItem D:\a\keysmith\keysmith\.github\workflows\install\windows\go.ps1
       - name: "Install Go"
         run: powershell D:\a\keysmith\keysmith\.github\workflows\install\windows\go.ps1
       - name: "Install Go Packages"
