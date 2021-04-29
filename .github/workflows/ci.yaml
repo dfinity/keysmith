@@ -15,11 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: 'Install Bats'
-        run: bash .github/workflows/install/darwin/bats.sh
+        run: ./.github/workflows/install/darwin/bats.sh
       - name: 'Install Bats Support'
-        run: bash .github/workflows/install/darwin/bats-support.sh
+        run: ./.github/workflows/install/darwin/bats-support.sh
       - name: 'Install Go'
-        run: bash .github/workflows/install/darwin/go.sh
+        run: ./.github/workflows/install/darwin/go.sh
       - name: 'Install Go Packages'
         run: go get ./...
       - name: 'Build Keysmith'
@@ -37,11 +37,11 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: 'Install Bats'
-        run: bash .github/workflows/install/linux/bats.sh
+        run: ./.github/workflows/install/linux/bats.sh
       - name: 'Install Bats Support'
-        run: bash .github/workflows/install/linux/bats-support.sh
+        run: ./.github/workflows/install/linux/bats-support.sh
       - name: 'Install Go'
-        run: bash .github/workflows/install/linux/go.sh
+        run: ./.github/workflows/install/linux/go.sh
       - name: 'Install Go Packages'
         run: go get ./...
       - name: 'Build Keysmith'
@@ -58,7 +58,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: 'Install Go'
-        run: powershell .github\workflows\install\windows\go.ps1
+        run: .\.github\workflows\install\windows\go.ps1
       - name: 'Install Go Packages'
         run: go get ./...
       - name: 'Build Keysmith'
