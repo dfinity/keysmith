@@ -40,6 +40,8 @@ jobs:
   keysmith-windows:
     runs-on: windows-latest
     steps:
+      - name: "Get-ChildItem"
+        run: Get-ChildItem
       - name: "Install Go"
         run: powershell .\.github\workflows\install\windows\go.ps1
       - name: "Install Go Packages"
