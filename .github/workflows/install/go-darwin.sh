@@ -5,7 +5,7 @@ TARBALL="go${VERSION}.darwin-amd64.tar.gz"
 pushd /tmp
 curl -L -O -s "https://storage.googleapis.com/golang/${TARBALL}"
 pushd /usr/local
-tar -f /tmp/${TARBALL} -x
+sudo tar -f /tmp/${TARBALL} -x
 popd
 popd
 GOROOT="/usr/local/go"
