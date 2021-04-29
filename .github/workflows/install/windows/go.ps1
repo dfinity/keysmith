@@ -1,4 +1,6 @@
 #!/usr/bin/env pwsh
+$ErrorActionPreference="Stop"
+Set-PSDebug -Trace 1
 
 # Define operating system and architecture.
 $goos="windows"
@@ -10,7 +12,7 @@ $zipfile="go$version.$goos-$goarch.zip"
 
 # Install Go compiler.
 Push-Location $env:TEMP
-$client = new-object System.Net.WebClient
+$client=new-object System.Net.WebClient
 $client.DownloadFile("https://storage.googleapis.com/golang/$zipfile", $zipfile)
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 [System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, "C:\")
