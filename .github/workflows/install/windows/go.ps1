@@ -7,7 +7,7 @@ Push-Location $env:TEMP
 $client = new-object System.Net.WebClient
 $client.DownloadFile("https://storage.googleapis.com/golang/$zipfile", $zipfile)
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-System.IO.Compression.ZipFile.ExtractToDirectory($zipfile, $pwd)
+[System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $pwd)
 Move-Item -Path go -Destination $goroot
 Pop-Location
 echo "GOROOT=$goroot" >> $env:GITHUB_ENV
