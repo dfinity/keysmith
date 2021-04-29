@@ -1,4 +1,4 @@
-name: "build"
+name: build
 on:
   push:
     branches:
@@ -9,45 +9,40 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
-      - name: "Install Bats"
+      - name: 'Install Bats'
         run: bash .github/workflows/install/darwin/bats.sh
-      - name: "Install Bats Support"
+      - name: 'Install Bats Support'
         run: bash .github/workflows/install/darwin/bats-support.sh
-      - name: "Install Go"
+      - name: 'Install Go'
         run: bash .github/workflows/install/darwin/go.sh
-      - name: "Install Go Packages"
+      - name: 'Install Go Packages'
         run: go get ./...
-      - name: "Build Keysmith"
+      - name: 'Build Keysmith'
         run: go build
-      - name: "Test Keysmith"
+      - name: 'Test Keysmith'
         run: bats e2e/bash/test.bats
   keysmith-linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: "Install Bats"
+      - name: 'Install Bats'
         run: bash .github/workflows/install/linux/bats.sh
-      - name: "Install Bats Support"
+      - name: 'Install Bats Support'
         run: bash .github/workflows/install/linux/bats-support.sh
-      - name: "Install Go"
+      - name: 'Install Go'
         run: bash .github/workflows/install/linux/go.sh
-      - name: "Install Go Packages"
+      - name: 'Install Go Packages'
         run: go get ./...
-      - name: "Build Keysmith"
+      - name: 'Build Keysmith'
         run: go build
-      - name: "Test Keysmith"
+      - name: 'Test Keysmith'
         run: bats e2e/bash/test.bats
   keysmith-windows:
     runs-on: windows-latest
     steps:
-      - name: "Get-Location"
-        run: Get-Location
-      - name: "Get-ChildItem"
-        run: |
-          Get-ChildItem D:\a\keysmith\keysmith\.github\workflows\install\windows\go.ps1
-      - name: "Install Go"
-        run: powershell D:\a\keysmith\keysmith\.github\workflows\install\windows\go.ps1
-      - name: "Install Go Packages"
+      - name: 'Install Go'
+        run: '& $env:GITHUB_ACTION_PATH\.github\workflows\install\windows\go.ps1'
+      - name: 'Install Go Packages'
         run: go get ./...
-      - name: "Build Keysmith"
+      - name: 'Build Keysmith'
         run: go build
