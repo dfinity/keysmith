@@ -41,7 +41,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: "Install Go"
-        run: powershell .github\workflows\install\windows\go.ps1
+        run: & .github\workflows\install\windows\go.ps1
       - name: "Install Go Packages"
         run: go get ./...
       - name: "Build Keysmith"
