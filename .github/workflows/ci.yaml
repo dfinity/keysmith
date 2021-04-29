@@ -5,16 +5,32 @@ on:
       - master
   pull_request:
 jobs:
-  main:
+  keysmith-darwin:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: "Install Bats"
+        run: bash .github/workflows/install/bats-darwin.sh
+      - name: "Install Bats Support"
+        run: bash .github/workflows/install/bats-support-darwin.sh
+      - name: "Install Go"
+        run: bash .github/workflows/install/go-darwin.sh
+      - name: "Install Go Packages"
+        run: go get ./...
+      - name: "Build Keysmith"
+        run: go build
+      - name: "Test Keysmith"
+        run: bats e2e/test.bats
+  keysmith-linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: "Install Bats"
-        run: sudo apt-get install bats
+        run: bash .github/workflows/install/bats-linux.sh
       - name: "Install Bats Support"
-        run: bash .github/workflows/install/bats-support.sh
+        run: bash .github/workflows/install/bats-support-linux.sh
       - name: "Install Go"
-        run: bash .github/workflows/install/go.sh
+        run: bash .github/workflows/install/go-linux.sh
       - name: "Install Go Packages"
         run: go get ./...
       - name: "Build Keysmith"
