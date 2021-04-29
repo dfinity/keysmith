@@ -6,9 +6,12 @@ on:
   pull_request:
 jobs:
   keysmith-darwin:
-    runs-on:
-      - macos-10.15
-      - macos-11.0
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - macos-10.15
+          - macos-11.0
     steps:
       - uses: actions/checkout@v1
       - name: 'Install Bats'
@@ -24,10 +27,13 @@ jobs:
       - name: 'Test Keysmith'
         run: bats e2e/bash/test.bats
   keysmith-linux:
-    runs-on:
-      - ubuntu-16.04
-      - ubuntu-18.04
-      - ubuntu-20.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-16.04
+          - ubuntu-18.04
+          - ubuntu-20.04
     steps:
       - uses: actions/checkout@v1
       - name: 'Install Bats'
@@ -43,9 +49,12 @@ jobs:
       - name: 'Test Keysmith'
         run: bats e2e/bash/test.bats
   keysmith-windows:
-    runs-on:
-      - windows-2016
-      - windows-2019
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - windows-2016
+          - windows-2019
     steps:
       - uses: actions/checkout@v1
       - name: 'Install Go'
@@ -54,3 +63,5 @@ jobs:
         run: go get ./...
       - name: 'Build Keysmith'
         run: go build
+      - name: 'Test Keysmith'
+        run: bats e2e/bash/test.bats
