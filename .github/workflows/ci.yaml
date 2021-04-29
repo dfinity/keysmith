@@ -65,3 +65,5 @@ jobs:
         run: go get ./...
       - name: 'Build Keysmith'
         run: go build
+      - name: 'Test Keysmith'
+        run: Invoke-Pester e2e\powershell\test.ps1
