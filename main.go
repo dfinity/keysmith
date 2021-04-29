@@ -19,8 +19,8 @@ func main() {
 
 	// Check if a subcommand was provided.
 	if len(os.Args) < 2 {
-		fmt.Fprintf(os.Stderr, Usage())
-		os.Exit(1)
+		fmt.Fprintf(os.Stdout, Usage())
+		os.Exit(0)
 	}
 
 	// Run the subcommand.
