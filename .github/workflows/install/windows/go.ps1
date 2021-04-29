@@ -2,7 +2,7 @@ $arch="amd64"
 $version="1.16"
 $zipfile="go$version.windows-$arch.zip"
 $goroot="C:\go"
-$gopath="$env:HOMEPATH/go"
+$gopath="$env:HOMEPATH\go"
 Push-Location $env:TEMP
 $client = new-object System.Net.WebClient
 $client.DownloadFile("https://storage.googleapis.com/golang/$zipfile", "$zipfile")
