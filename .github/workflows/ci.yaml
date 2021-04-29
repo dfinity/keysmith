@@ -42,6 +42,7 @@ jobs:
     steps:
       - name: 'Install Go'
         run: '& $env:GITHUB_ACTION_PATH\.github\workflows\install\windows\go.ps1'
+        shell: pwsh
       - name: 'Install Go Packages'
         run: go get ./...
       - name: 'Build Keysmith'
