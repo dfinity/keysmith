@@ -1,3 +1,7 @@
+## v1.4.0
+
+- Add support for latest MacOS and Windows.
+
 ## v1.3.0
 
 - Upgrade HD crypto library dependency.
