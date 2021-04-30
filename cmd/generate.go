@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 
+	"github.com/dfinity/keysmith/util"
 	"github.com/tyler-smith/go-bip39"
 )
 
@@ -45,6 +46,6 @@ func (cmd *GenerateCmd) Run() error {
 	if err != nil {
 		return err
 	}
-	contents := []byte(mnemonic + "\n")
+	contents := []byte(mnemonic + util.NewLine)
 	return ioutil.WriteFile(*cmd.Args.OutputFile, contents, 0600)
 }

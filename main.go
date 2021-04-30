@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/dfinity/keysmith/cmd"
+	"github.com/dfinity/keysmith/util"
 )
 
 var (
@@ -18,8 +19,8 @@ func main() {
 
 	// Check if a subcommand was provided.
 	if len(os.Args) < 2 {
-		fmt.Fprintf(os.Stderr, Usage())
-		os.Exit(1)
+		fmt.Fprintf(os.Stdout, Usage())
+		os.Exit(0)
 	}
 
 	// Run the subcommand.
@@ -48,7 +49,7 @@ func main() {
 
 	// Check if an error occurred.
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error: %v" + util.NewLine, err)
 		os.Exit(1)
 	}
 }

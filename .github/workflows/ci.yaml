@@ -1,23 +1,69 @@
-name: "build"
+name: build
 on:
   push:
     branches:
       - master
   pull_request:
 jobs:
-  main:
-    runs-on: ubuntu-latest
+  keysmith-darwin:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - macos-10.15
+          - macos-latest
     steps:
       - uses: actions/checkout@v1
-      - name: "Install Bats"
-        run: sudo apt-get install bats
-      - name: "Install Bats Support"
-        run: bash .github/workflows/install/bats-support.sh
-      - name: "Install Go"
-        run: bash .github/workflows/install/go.sh
-      - name: "Install Go Packages"
+      - name: 'Install Bats Core'
+        run: ./.github/workflows/install/darwin/bats-core.sh
+      - name: 'Install Bats Support'
+        run: ./.github/workflows/install/darwin/bats-support.sh
+      - name: 'Install Go'
+        run: ./.github/workflows/install/darwin/go.sh
+      - name: 'Install Go Packages'
         run: go get ./...
-      - name: "Build Keysmith"
+      - name: 'Build Keysmith'
         run: go build
-      - name: "Test Keysmith"
-        run: bats e2e/test.bats
+      - name: 'Test Keysmith'
+        run: bats e2e/bash/test.bats
+  keysmith-linux:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-16.04
+          - ubuntu-18.04
+          - ubuntu-20.04
+          - ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: 'Install Bats Core'
+        run: ./.github/workflows/install/linux/bats-core.sh
+      - name: 'Install Bats Support'
+        run: ./.github/workflows/install/linux/bats-support.sh
+      - name: 'Install Go'
+        run: ./.github/workflows/install/linux/go.sh
+      - name: 'Install Go Packages'
+        run: go get ./...
+      - name: 'Build Keysmith'
+        run: go build
+      - name: 'Test Keysmith'
+        run: bats e2e/bash/test.bats
+  keysmith-windows:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - windows-2016
+          - windows-2019
+          - windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: 'Install Go'
+        run: .\.github\workflows\install\windows\go.ps1
+      - name: 'Install Go Packages'
+        run: go get ./...
+      - name: 'Build Keysmith'
+        run: go build
+      - name: 'Test Keysmith'
+        run: Invoke-Pester e2e\powershell\test.ps1
