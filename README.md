@@ -4,6 +4,10 @@ Hierarchical Deterministic Key Derivation for the Internet Computer
 
 [![Build Status](https://github.com/dfinity/keysmith/workflows/build/badge.svg)](https://github.com/dfinity/keysmith/actions?query=workflow%3Abuild)
 
+## Introduction
+
+Keysmith lets you derive cryptographic keys and identifiers for the Internet Computer. Among these identifiers includes an account identifier, which indicates the source or destination of an ICP token transfer. Keysmith does not sign or send messages to the Internet Computer. Hence, Keysmith does not facilitate ICP token transfer, but rather only ICP token custody.
+
 ## Download
 
 Download the latest tarball [here](https://github.com/dfinity/keysmith/releases).
