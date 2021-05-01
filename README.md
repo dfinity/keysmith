@@ -48,11 +48,11 @@ sudo mv keysmith /usr/local/bin
 
 Below is list of commands and their behavior.
 
-- `account` prints your account identifier
-- `generate` generates your mnemonic seed
-- `legacy-address` prints your legacy address
-- `principal` prints your principal identifier
-- `private-key` writes your private key to a file
-- `public-key` prints your public key
-- `version` prints the version number
-- `x-public-key` prints your extended public key
+- `account` prints your account identifier.
+- `generate` generates your mnemonic seed.
+- `legacy-address` prints your legacy address.
+- `principal` prints your principal identifier.
+- `private-key` writes your private key to a file.
+- `public-key` prints your public key.
+- `version` prints the version number.
+- `x-public-key` prints your extended public key.
