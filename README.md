@@ -6,8 +6,34 @@
 
 ## Install
 
+Download the latest release binary [here](https://github.com/dfinity/keysmith/releases).
+
+Below is list of supported operating systems and architectures.
+
+- darwin/amd64
+- darwin/arm64
+- linux/amd64
+- linux/arm64
+- windows/amd64
+
+If you want to verify the authenticity of the latest release binary, please also download the `SHA256.SIG` and `SHA256.SUM` files, as well as our [public key](https://sovereign.io/public.key).
+
+Verify the SHA256 checksum of your download.
+
+```text
+grep "$(openssl dgst -sha256 keysmith-*.tar.gz)" SHA256.SUM
 ```
-go get github.com/dfinity/keysmith
+
+Verify the signature on the release binary.
+
+```text
+openssl dgst -verify public.key -signature SHA256.SIG SHA256.SUM
+```
+
+The command above should display the following output.
+
+```text
+Verified OK
 ```
 
 ## Usage
