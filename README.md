@@ -6,17 +6,17 @@ Hierarchical Deterministic Key Derivation for the Internet Computer
 
 ## Install
 
-Download the release binary [here](https://github.com/dfinity/keysmith/releases).
+Download the latest release binary [here](https://github.com/dfinity/keysmith/releases).
 
-Below is list of supported operating systems and architectures.
+Below is list of operating systems and architectures that we currently support.
 
-- darwin/amd64
-- darwin/arm64
-- linux/amd64
-- linux/arm64
-- windows/amd64
+- `darwin/amd64`
+- `darwin/arm64`
+- `linux/amd64`
+- `linux/arm64`
+- `windows/amd64`
 
-If you want to verify the authenticity of the release binary, then please also download the `SHA256.SIG` and `SHA256.SUM` files, as well as my [public key](https://sovereign.io/public.key).
+If you want to verify the authenticity of the release binary, then please also download the `SHA256.SIG` and `SHA256.SUM` files, as well as my public key, which you can find [here](https://sovereign.io/public.key).
 
 Verify the SHA256 checksum of the release binary.
 
@@ -38,16 +38,13 @@ Verified OK
 
 ## Usage
 
-```text
-usage: keysmith <command> [<args>]
+Below is list of commands and their behavior.
 
-Available Commands:
-    account             Print your account identifier.
-    generate            Generate your mnemonic seed.
-    legacy-address      Print your legacy address.
-    principal           Print your principal identifier.
-    private-key         Write your private key to a file.
-    public-key          Print your public key.
-    version             Print the version number.
-    x-public-key        Print your extended public key.
-```
+- `account` prints your account identifier
+- `generate` generate your mnemonic seed
+- `legacy-address` prints your legacy address
+- `principal` prints your principal identifier
+- `private-key` write your private key to a file
+- `public-key` prints your public key
+- `version` prints the version number
+- `x-public-key` prints your extended public key
