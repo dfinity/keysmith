@@ -1,12 +1,12 @@
 # Keysmith
 
-> Hierarchical Deterministic Key Derivation for the Internet Computer
+Hierarchical Deterministic Key Derivation for the Internet Computer
 
 [![Build Status](https://github.com/dfinity/keysmith/workflows/build/badge.svg)](https://github.com/dfinity/keysmith/actions?query=workflow%3Abuild)
 
 ## Install
 
-Download the latest release binary [here](https://github.com/dfinity/keysmith/releases).
+Download the release binary [here](https://github.com/dfinity/keysmith/releases).
 
 Below is list of supported operating systems and architectures.
 
@@ -16,9 +16,9 @@ Below is list of supported operating systems and architectures.
 - linux/arm64
 - windows/amd64
 
-If you want to verify the authenticity of the latest release binary, please also download the `SHA256.SIG` and `SHA256.SUM` files, as well as our [public key](https://sovereign.io/public.key).
+If you want to verify the authenticity of the release binary, then please also download the `SHA256.SIG` and `SHA256.SUM` files, as well as my [public key](https://sovereign.io/public.key).
 
-Verify the SHA256 checksum of your download.
+Verify the SHA256 checksum of the release binary.
 
 ```text
 grep "$(openssl dgst -sha256 keysmith-*.tar.gz)" SHA256.SUM
