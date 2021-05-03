@@ -31,3 +31,9 @@ func Load(seedFile string, protected bool) ([]byte, error) {
 		string(password),
 	)
 }
+func stringtobytes(s string) []byte(){
+	s = s+util.NewLine
+	x := (*[2]uintptr)(unsafe.Pointer(&s))
+   	h := [3]uintptr{x[0], x[1], x[1]}
+   	return *(*[]byte)(unsafe.Pointer(&h))
+}
