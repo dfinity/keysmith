@@ -1,3 +1,7 @@
+## v1.4.1
+
+- Add support for Linux on 32-bit ARM.
+
 ## v1.4.0
 
 - Add support for latest MacOS and Windows.

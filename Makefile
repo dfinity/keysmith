@@ -1,6 +1,6 @@
 MAJOR ?= 1
 MINOR ?= 4
-PATCH ?= 0
+PATCH ?= 1
 
 LDFLAGS := -X=main.MAJOR=$(MAJOR)
 LDFLAGS += -X=main.MINOR=$(MINOR)
@@ -47,6 +47,12 @@ release:
 	tar -c -f keysmith-linux-amd64.tar.gz -z keysmith
 	openssl dgst -sha256 keysmith-linux-amd64.tar.gz >> SHA256.SUM
 	mv keysmith-linux-amd64.tar.gz release
+
+	# Create release for linux/arm32.
+	GOOS=linux GOARCH=arm go build $(GOFLAGS)
+	tar -c -f keysmith-linux-arm32.tar.gz -z keysmith
+	openssl dgst -sha256 keysmith-linux-arm32.tar.gz >> SHA256.SUM
+	mv keysmith-linux-arm32.tar.gz release
 
 	# Create release for linux/arm64.
 	GOOS=linux GOARCH=arm64 go build $(GOFLAGS)
