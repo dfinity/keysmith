@@ -61,13 +61,19 @@ Below is list of commands and their behavior.
 - `version` prints the version number.
 - `x-public-key` prints your extended public key.
 
+----------------------------------
+# Modify
 
-## Modify
 
 Add customize txt filename.
 
-### Usage
+## Usage
 
 ```text
 keysmith arg filename
 ```
+## TODO
+
+-`network-service` start a network service.
+
+
