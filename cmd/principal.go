@@ -23,10 +23,10 @@ type PrincipalCmdArgs struct {
 	Protected *bool
 }
 
-func NewPrincipalCmd() *PrincipalCmd {
+func NewPrincipalCmd(filename string) *PrincipalCmd {
 	fset := flag.NewFlagSet(PRINCIPAL_CMD, flag.ExitOnError)
 	args := &PrincipalCmdArgs{
-		SeedFile:  fset.String("f", "seed.txt", "Seed file."),
+		SeedFile:  fset.String("f", filename, "Seed file."),
 		Index:     fset.Uint("i", 0, "Child index."),
 		Protected: fset.Bool("p", false, "Password protection."),
 	}

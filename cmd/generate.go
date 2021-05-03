@@ -21,10 +21,10 @@ type GenerateCmdArgs struct {
 	OutputFile *string
 }
 
-func NewGenerateCmd() *GenerateCmd {
+func NewGenerateCmd(filename string) *GenerateCmd {
 	fset := flag.NewFlagSet(GENERATE_CMD, flag.ExitOnError)
 	args := &GenerateCmdArgs{
-		OutputFile: fset.String("o", "seed.txt", "Seed file."),
+		OutputFile: fset.String("o", filename, "Seed file."),
 	}
 	return &GenerateCmd{fset, args}
 }

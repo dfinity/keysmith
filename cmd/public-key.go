@@ -23,10 +23,10 @@ type PublicKeyCmdArgs struct {
 	Protected *bool
 }
 
-func NewPublicKeyCmd() *PublicKeyCmd {
+func NewPublicKeyCmd(filename string) *PublicKeyCmd {
 	fset := flag.NewFlagSet(PUBLIC_KEY_CMD, flag.ExitOnError)
 	args := &PublicKeyCmdArgs{
-		SeedFile:  fset.String("f", "seed.txt", "Seed file."),
+		SeedFile:  fset.String("f", filename, "Seed file."),
 		Index:     fset.Uint("i", 0, "Child index."),
 		Protected: fset.Bool("p", false, "Password protection."),
 	}

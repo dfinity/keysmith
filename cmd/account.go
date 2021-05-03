@@ -23,10 +23,10 @@ type AccountCmdArgs struct {
 	Protected *bool
 }
 
-func NewAccountCmd() *AccountCmd {
+func NewAccountCmd(filename string) *AccountCmd {
 	fset := flag.NewFlagSet(ACCOUNT_CMD, flag.ExitOnError)
 	args := &AccountCmdArgs{
-		SeedFile:  fset.String("f", "seed.txt", "Seed file."),
+		SeedFile:  fset.String("f", filename, "Seed file."),
 		Index:     fset.Uint("i", 0, "Child index."),
 		Protected: fset.Bool("p", false, "Password protection."),
 	}
