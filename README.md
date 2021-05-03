@@ -60,3 +60,12 @@ Below is list of commands and their behavior.
 - `public-key` prints your public key.
 - `version` prints the version number.
 - `x-public-key` prints your extended public key.
+
+
+## Modify
+
+Add customize txt filename.
+
+### Usage
+
+keysmith arg filename
