@@ -7,7 +7,7 @@ case "$(uname -m)" in
     x86_64)
         GOARCH="amd64";;
     arm64)
-        GOARCH="arm64";;
+        GOARCH="arm"; GOARM=7;;
     *)
         echo "Error: Unsupported architecture!"
         exit 1
