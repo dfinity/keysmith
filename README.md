@@ -65,15 +65,25 @@ Below is list of commands and their behavior.
 # Modify
 
 
-Add customize txt filename.
+Add customize txt filename support.
+network service
 
 ## Usage
 
+#### customize filename
 ```text
-keysmith arg filename
+keysmith <command> <filename>
 ```
+
+#### network service
+```text
+keysmith netservice start
+```
+service will start at 127.0.0.1:8081
+
 ## TODO
 
--`network-service` start a network service.
-
+-`keysmith netservice -p 8000` change ports
+-`keysmith <command> -f <filename>`  
+-API document
 
