@@ -83,7 +83,7 @@ service will start at 127.0.0.1:8081
 
 ## TODO
 
--`keysmith netservice -p 8000` change ports
--`keysmith <command> -f <filename>`  
--API document
+- `keysmith netservice -p 8000` change ports
+- `keysmith <command> -f <filename>`  
+- API document
 
