@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/dfinity/keysmith/cmd"
-	"github.com/dfinity/keysmith/util"
+	"github.com/KevinTroyT/keysmith/cmd"
+	"github.com/KevinTroyT/keysmith/netservice"
+	"github.com/KevinTroyT/keysmith/util"
 )
 
 var (
@@ -45,6 +46,25 @@ func main() {
 		err = cmd.NewVersionCmd(version()).Run()
 	case cmd.X_PUBLIC_KEY_CMD:
 		err = cmd.NewXPublicKeyCmd(filename).Run()
+	case netservice.NETWORK_CMD:
+		if len(os.Args) < 3 {
+			fmt.Fprintf(os.Stdout, NetUsage())
+			os.Exit(1)
+		}
+		switch os.Args[2] {
+		case netservice.NETWORK_CMD_START:
+			err = netservice.Start()
+
+		// TODO:
+		// case netservice.NETWORK_CMD_STOP:
+		// 	println("stop")
+
+		// case netservice.NETWORK_CMD_RESTART:
+		// 	println("restart")
+		default:
+			fmt.Fprintf(os.Stdout, NetUsage())
+			os.Exit(1)
+		}
 	default:
 		fmt.Fprintf(os.Stderr, Usage())
 		os.Exit(1)
