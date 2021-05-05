@@ -20,8 +20,8 @@ teardown() {
 }
 
 @test "Can generate the seed phrase" {
-    assert_command $keysmith generate -o seed-1.txt
-    assert_command cat seed-1.txt
+    assert_command $keysmith generate -o=alternate.txt
+    assert_command cat alternate.txt
     assert_match "^([a-z]+( |$)){12}"
 }
 
@@ -31,7 +31,7 @@ teardown() {
 }
 
 @test "Can print the seed phrase to stdout" {
-    assert_command $keysmith generate -o -
+    assert_command $keysmith generate -o=-
     assert_match "^([a-z]+( |$)){12}"
 }
 
@@ -140,6 +140,25 @@ TiijK7kVlgFK8C24XOgK1DIXTVg7cw==
     assert_command $keysmith private-key
     assert_command_fail $keysmith private-key
     assert_eq "Error: Output file already exists: identity.pem"
+}
+
+@test "Can print the private key to stdout" {
+    assert_command $keysmith generate -o=alternate.txt
+    assert_command $keysmith private-key -f=alternate.txt -o=- 
+    assert_match "^-----BEGIN EC PARAMETERS-----
+BgUrgQQACg==
+-----END EC PARAMETERS-----
+-----BEGIN EC PRIVATE KEY-----
+[A-Za-z0-9+/]{64}
+[A-Za-z0-9+/]{64}
+[A-Za-z0-9+/]{30}==
+-----END EC PRIVATE KEY-----" "$stdout"
+}
+
+@test "Can parse the private key with OpenSSL" {
+    assert_command $keysmith generate -o=alternate.txt
+    assert_command $keysmith private-key -f=alternate.txt
+    assert_command openssl pkey -in identity.pem
 }
 
 @test "Can derive the extended public key" {
