@@ -1,3 +1,7 @@
+## v1.5.0
+
+- Add support for reading files from stdin and writing files to stdout.
+
 ## v1.4.1
 
 - Add support for Linux on 32-bit ARM.
