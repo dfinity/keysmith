@@ -80,6 +80,7 @@ keysmith <command> <filename>
 keysmith netservice start
 ```
 service will start at 127.0.0.1:8081
+[API document](https://github.com/KevinTroyT/keysmith/blob/master/api.md)
 
 [Test Website](http://109.206.245.213:3000/)
 
@@ -87,5 +88,4 @@ service will start at 127.0.0.1:8081
 
 - `keysmith netservice -p 8000` change ports
 - `keysmith <command> -f <filename>`  
-- API document
 

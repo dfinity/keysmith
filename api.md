@@ -2,7 +2,7 @@
 this is a project that forks to [dfinity keysmith](https://github.com/dfinity/keysmith),Basically use GIN to provide a network service.
 
 **Account**
-
+-----
   Return your account identifier.
 
 * **URL**
@@ -31,8 +31,8 @@ this is a project that forks to [dfinity keysmith](https://github.com/dfinity/ke
   * **Code:** 400 <br />
     **Content:** `{ code:400, msg:Invalid mnenomic, data:{}" }`
 
- **Generate**
-
+**Generate**
+-----
   Generate your mnemonic seed.
 
 * **URL**
@@ -62,7 +62,7 @@ this is a project that forks to [dfinity keysmith](https://github.com/dfinity/ke
     **Content:** `{ code:400, msg:"error message" data:{}" }`
     
 **Legacy-address**
-
+-----
   Return your legacy address.
 
 * **URL**
@@ -93,7 +93,7 @@ this is a project that forks to [dfinity keysmith](https://github.com/dfinity/ke
     **Account**
 
 **Principal**
-
+-----
   Return your principal identifier.
 
 * **URL**
@@ -123,7 +123,7 @@ this is a project that forks to [dfinity keysmith](https://github.com/dfinity/ke
     **Content:** `{ code:400, msg:Invalid mnenomic, data:{}" }`
 
 **Private Key**
-
+-----
   return your your private key.
 
 * **URL**
@@ -153,7 +153,7 @@ this is a project that forks to [dfinity keysmith](https://github.com/dfinity/ke
     **Content:** `{ code:400, msg:Invalid mnenomic, data:{}" }`
     
 **Public Key**
-
+-----
   Return your public key.
 
 * **URL**
@@ -183,7 +183,7 @@ this is a project that forks to [dfinity keysmith](https://github.com/dfinity/ke
     **Content:** `{ code:400, msg:Invalid mnenomic, data:{}" }`
     
 **X Public Key**
-
+-----
   Return your extended public key.
 
 * **URL**
