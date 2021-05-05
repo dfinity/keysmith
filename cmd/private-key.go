@@ -2,8 +2,6 @@ package cmd
 
 import (
 	"flag"
-	"fmt"
-	"io/ioutil"
 	"os"
 
 	"github.com/dfinity/keysmith/codec"
@@ -38,13 +36,6 @@ func NewPrivateKeyCmd() *PrivateKeyCmd {
 
 func (cmd *PrivateKeyCmd) Run() error {
 	cmd.FlagSet.Parse(os.Args[2:])
-	_, err := os.Stat(*cmd.Args.OutputFile)
-	if !os.IsNotExist(err) {
-		return fmt.Errorf(
-			"Output file already exists: %s",
-			*cmd.Args.OutputFile,
-		)
-	}
 	seed, err := seed.Load(*cmd.Args.SeedFile, *cmd.Args.Protected)
 	if err != nil {
 		return err
@@ -64,5 +55,5 @@ func (cmd *PrivateKeyCmd) Run() error {
 	if err != nil {
 		return err
 	}
-	return ioutil.WriteFile(*cmd.Args.OutputFile, output, 0600)
+	return writeFileOrStdout(*cmd.Args.OutputFile, output, 0600)
 }
