@@ -12,7 +12,7 @@ import (
 )
 
 func Load(seedFile string, protected bool) ([]byte, error) {
-	mnemonic, err := ioutil.ReadFile(seedFile)
+	mnemonic, err := readFileOrStdin(seedFile)
 	if err != nil {
 		return nil, err
 	}
@@ -30,4 +30,16 @@ func Load(seedFile string, protected bool) ([]byte, error) {
 		string(mnemonic),
 		string(password),
 	)
+}
+
+func readFileOrStdin(file string) ([]byte, error) {
+	reader := os.Stdin
+	var err error
+	if file != "-" {
+		reader, err = os.Open(file)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return ioutil.ReadAll(reader)
 }
