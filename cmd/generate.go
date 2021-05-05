@@ -2,8 +2,6 @@ package cmd
 
 import (
 	"flag"
-	"fmt"
-	"io/ioutil"
 	"os"
 
 	"github.com/dfinity/keysmith/util"
@@ -31,13 +29,6 @@ func NewGenerateCmd() *GenerateCmd {
 
 func (cmd *GenerateCmd) Run() error {
 	cmd.FlagSet.Parse(os.Args[2:])
-	_, err := os.Stat(*cmd.Args.OutputFile)
-	if !os.IsNotExist(err) {
-		return fmt.Errorf(
-			"Output file already exists: %s",
-			*cmd.Args.OutputFile,
-		)
-	}
 	entropy, err := bip39.NewEntropy(128)
 	if err != nil {
 		return err
@@ -46,6 +37,6 @@ func (cmd *GenerateCmd) Run() error {
 	if err != nil {
 		return err
 	}
-	contents := []byte(mnemonic + util.NewLine)
-	return ioutil.WriteFile(*cmd.Args.OutputFile, contents, 0600)
+	output := []byte(mnemonic + util.NewLine)
+	return writeFileOrStdout(*cmd.Args.OutputFile, output, 0600)
 }

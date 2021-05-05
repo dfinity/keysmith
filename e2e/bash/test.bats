@@ -21,15 +21,18 @@ teardown() {
 
 @test "Can generate the seed phrase" {
     assert_command $keysmith generate -o seed-1.txt
-    assert_command wc -l seed-1.txt
-    assert_eq "1 seed-1.txt"
-    assert_command wc -w seed-1.txt
-    assert_eq "12 seed-1.txt"
+    assert_command cat seed-1.txt
+    assert_match "^([a-z]+( |$)){12}"
 }
 
 @test "Cannot overwrite the seed phrase" {
     assert_command_fail $keysmith generate
     assert_eq "Error: Output file already exists: seed.txt"
+}
+
+@test "Can print the seed phrase to stdout" {
+    assert_command $keysmith generate -o -
+    assert_match "^([a-z]+( |$)){12}"
 }
 
 @test "Can derive the private key" {
