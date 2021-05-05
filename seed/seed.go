@@ -40,6 +40,7 @@ func readFileOrStdin(file string) ([]byte, error) {
 		if err != nil {
 			return nil, err
 		}
+		defer reader.Close()
 	}
 	return ioutil.ReadAll(reader)
 }
