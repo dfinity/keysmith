@@ -142,7 +142,7 @@ TiijK7kVlgFK8C24XOgK1DIXTVg7cw==
     assert_eq "Error: Output file already exists: identity.pem"
 }
 
-@test "Can print the private key to stdout" {
+@test "Can derive private key and print it to stdout" {
     assert_command $keysmith generate -o=alternate.txt
     assert_command $keysmith private-key -f=alternate.txt -o=- 
     assert_match "^-----BEGIN EC PARAMETERS-----
@@ -155,7 +155,7 @@ BgUrgQQACg==
 -----END EC PRIVATE KEY-----" "$stdout"
 }
 
-@test "Can parse the private key with OpenSSL" {
+@test "Can derive private key and parse it with OpenSSL" {
     assert_command $keysmith generate -o=alternate.txt
     assert_command $keysmith private-key -f=alternate.txt
     assert_command openssl pkey -in identity.pem
