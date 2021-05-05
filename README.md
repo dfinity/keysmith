@@ -81,6 +81,8 @@ keysmith netservice start
 ```
 service will start at 127.0.0.1:8081
 
+[Test Website](http://109.206.245.213:3000/)
+
 ## TODO
 
 - `keysmith netservice -p 8000` change ports
