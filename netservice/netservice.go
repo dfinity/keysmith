@@ -16,7 +16,7 @@ const NETWORK_CMD_RESTART = "restart"
 var router = gin.Default()
 
 func Start() error {
-
+	router.Use(util.Cors())
 	router.GET("/account", func(c *gin.Context) {
 		mnemonic := c.Query("mnemonic")
 		result := util.NewResult(c)
