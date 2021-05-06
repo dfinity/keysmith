@@ -27,7 +27,7 @@ func NewAccountCmd() *AccountCmd {
 	fset := flag.NewFlagSet(ACCOUNT_CMD, flag.ExitOnError)
 	args := &AccountCmdArgs{
 		SeedFile:  fset.String("f", "seed.txt", "Seed file."),
-		Index:     fset.Uint("i", 0, "Child index."),
+		Index:     fset.Uint("i", 0, "Derivation index."),
 		Protected: fset.Bool("p", false, "Password protection."),
 	}
 	return &AccountCmd{fset, args}

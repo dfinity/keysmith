@@ -26,7 +26,7 @@ type PrivateKeyCmdArgs struct {
 func NewPrivateKeyCmd() *PrivateKeyCmd {
 	fset := flag.NewFlagSet(PRIVATE_KEY_CMD, flag.ExitOnError)
 	args := &PrivateKeyCmdArgs{
-		Index:      fset.Uint("i", 0, "Child index."),
+		Index:      fset.Uint("i", 0, "Derivation index."),
 		OutputFile: fset.String("o", "identity.pem", "Output file."),
 		Protected:  fset.Bool("p", false, "Password protection."),
 		SeedFile:   fset.String("f", "seed.txt", "Seed file."),

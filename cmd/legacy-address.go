@@ -28,7 +28,7 @@ func NewLegacyAddressCmd() *LegacyAddressCmd {
 	fset := flag.NewFlagSet(LEGACY_ADDRESS_CMD, flag.ExitOnError)
 	args := &LegacyAddressCmdArgs{
 		SeedFile:  fset.String("f", "seed.txt", "Seed file."),
-		Index:     fset.Uint("i", 0, "Child index."),
+		Index:     fset.Uint("i", 0, "Derivation index."),
 		Protected: fset.Bool("p", false, "Password protection."),
 	}
 	return &LegacyAddressCmd{fset, args}
