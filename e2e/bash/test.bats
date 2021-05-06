@@ -262,7 +262,7 @@ BgUrgQQACg==
     assert_command openssl pkey -in identity.pem
 }
 
-@test "Can derive the extended public key" {
+@test "Can derive the extended public key using input from a file" {
     assert_command $keysmith x-public-key
     assert_eq "xpub6CNy5DbAcCUaWvFJEwNzFfQGkHJkiLT3nhsLjjBgke9twPepgyMmpAU1vKq4KnEqG6BeyoQx2YVjFuo5jSWjok4zCCNE8VDgSrZPYvGPkch"
 }
