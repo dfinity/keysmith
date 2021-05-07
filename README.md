@@ -25,7 +25,7 @@ grep "$(openssl dgst -sha256 keysmith-*.tar.gz)" SHA256.SUM
 Verify the signature on the tarball.
 
 ```text
-openssl dgst -verify public.key -signature SHA256.SIG SHA256.SUM
+openssl dgst -sha256 -verify public.key -signature SHA256.SIG SHA256.SUM
 ```
 
 The command above should display the following output.
@@ -42,10 +42,11 @@ Extract the executable from the tarball.
 tar -f keysmith-*.tar.gz -x 
 ```
 
-Move the executable to a suitable location.
+Add the executable to your `PATH`.
 
 ```text
-sudo mv keysmith /usr/local/bin
+sudo install -d /usr/local/bin
+sudo install keysmith /usr/local/bin
 ```
 
 ## Usage
