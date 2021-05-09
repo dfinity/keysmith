@@ -64,10 +64,13 @@ Below is list of commands and their behavior.
 
 ## Integration with the DFINITY Canister SDK
 
+The [DFINITY Canister SDK](https://sdk.dfinity.org) can sign and send messages to the Internet Computer. Versions `0.7.0-beta.6` and greater provide a convenient `ledger` command that facilitates ICP token transfer. Consider the workflow below.
+
 ```bash
 keysmith generate # Generate your mnemonic seed.
 keysmith private-key # Derive your private key.
-echo {} > dfx.json # Create an empty dfx project directory.
+DFX_VERSION=0.7.0-beta.6 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)" # Install dfx.
+echo {} > dfx.json # Create an empty project.
 dfx identity import alternate identity.pem # Import your private key.
 dfx identity use alternate # Use your private key to sign messages.
 dfx ledger account-id # Print your account identifier.
