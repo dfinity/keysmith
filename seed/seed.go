@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/dfinity/keysmith/util"
 	"github.com/tyler-smith/go-bip39"
 	"golang.org/x/term"
 )
