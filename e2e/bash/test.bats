@@ -237,6 +237,22 @@ TiijK7kVlgFK8C24XOgK1DIXTVg7cw==
 -----END EC PRIVATE KEY-----" "$stdout"
 }
 
+@test "Can derive the private key using alternate input forms" {
+    for word in $(cat seed.txt); do
+        echo $word >> alternate.txt
+    done
+    assert_command $keysmith private-key -f=alternate.txt
+    assert_command cat identity.pem
+    assert_eq "-----BEGIN EC PARAMETERS-----
+BgUrgQQACg==
+-----END EC PARAMETERS-----g
+-----BEGIN EC PRIVATE KEY-----
+MHQCAQEEIAgy7nZEcVHkQ4Z1Kdqby8SwyAiyKDQmtbEHTIM+WNeBoAcGBSuBBAAK
+oUQDQgAEgO87rJ1ozzdMvJyZQ+GABDqUxGLvgnAnTlcInV3NuhuPv4O3VGzMGzeB
+N3d26cRxD99TPtm8uo2OuzKhSiq6EQ==
+-----END EC PRIVATE KEY-----" "$stdout"
+}
+
 @test "Cannot overwrite the private key" {
     assert_command $keysmith private-key
     assert_command_fail $keysmith private-key
