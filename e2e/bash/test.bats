@@ -245,7 +245,7 @@ TiijK7kVlgFK8C24XOgK1DIXTVg7cw==
     assert_command cat identity.pem
     assert_eq "-----BEGIN EC PARAMETERS-----
 BgUrgQQACg==
------END EC PARAMETERS-----g
+-----END EC PARAMETERS-----
 -----BEGIN EC PRIVATE KEY-----
 MHQCAQEEIAgy7nZEcVHkQ4Z1Kdqby8SwyAiyKDQmtbEHTIM+WNeBoAcGBSuBBAAK
 oUQDQgAEgO87rJ1ozzdMvJyZQ+GABDqUxGLvgnAnTlcInV3NuhuPv4O3VGzMGzeB
