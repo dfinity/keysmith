@@ -25,7 +25,7 @@ func Load(seedFile string, protected bool) ([]byte, error) {
 			return nil, err
 		}
 	}
-	mnemonic = bytes.TrimSuffix(mnemonic, []byte(util.NewLine))
+	mnemonic = bytes.Join(bytes.Fields(mnemonic), []byte(" "))
 	return bip39.NewSeedWithErrorChecking(
 		string(mnemonic),
 		string(password),
