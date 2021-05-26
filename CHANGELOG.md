@@ -1,3 +1,7 @@
+## v1.5.1
+
+- Normalize mnemonic seed input to use the space character as its field separator.
+
 ## v1.5.0
 
 - Add support for reading files from stdin and writing files to stdout.
