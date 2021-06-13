@@ -54,10 +54,10 @@ sudo install keysmith /usr/local/bin
 Below is list of commands and their behavior.
 
 - `account` prints your account identifier.
-- `generate` generates your mnemonic seed.
+- `generate` generates your mnemonic seed and writes it to a file.
 - `legacy-address` prints your legacy address.
 - `principal` prints your principal identifier.
-- `private-key` derives your private key.
+- `private-key` derives your private key and writes it to a file.
 - `public-key` prints your public key.
 - `version` prints the version number.
 - `x-public-key` prints your extended public key.
@@ -67,16 +67,23 @@ Below is list of commands and their behavior.
 The [DFINITY Canister SDK](https://sdk.dfinity.org) can sign and send messages to the Internet Computer. Versions `0.7.0-beta.6` and greater provide a convenient `ledger` command that facilitates ICP token transfer. Consider the workflow below.
 
 ```bash
-keysmith generate # Generate your mnemonic seed.
-keysmith private-key # Derive your private key.
-DFX_VERSION=0.7.0-beta.6 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)" # Install dfx.
-echo {} > dfx.json # Create an empty project.
-dfx identity import alternate identity.pem # Import your private key.
-dfx identity use alternate # Use your private key to sign messages.
-dfx ledger account-id # Print your account identifier.
-dfx ledger --network=https://ic0.app balance # Check your balance.
-dfx ledger --network=https://ic0.app transfer \ # Send me some tokens.
-    --amount=1.23456789 \ # ICP is divisible by 10^(-8) just like Bitcoin.
-    --memo=244837814094590 \ # Include a numeric memo.
+# Generate your mnemonic seed.
+keysmith generate
+# Derive your private key.
+keysmith private-key
+# Create an empty project.
+echo {} > dfx.json
+# Import your private key.
+dfx identity import alternate identity.pem
+# Use your private key to sign messages.
+dfx identity use alternate
+# Print your account identifier.
+dfx ledger account-id
+# Check your balance.
+dfx ledger --network=https://ic0.app balance
+# Send me some tokens.
+dfx ledger --network=https://ic0.app transfer \
+    --amount=1.23456789 \
+    --memo=0 \
     --to=89e99f79ec4d81f77a6c8cb243e536e7b3244d7294fb803bcd77b3dd4e32ae36
 ```
