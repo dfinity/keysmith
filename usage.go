@@ -11,10 +11,10 @@ func Usage() string {
 
 Available Commands:
     %s             Print your account identifier.
-    %s            Generate your mnemonic seed.
+    %s            Generate your mnemonic seed and write it to a file.
     %s      Print your legacy address.
     %s           Print your principal identifier.
-    %s         Write your private key to a file.
+    %s         Derive your private key and write it to a file.
     %s          Print your public key.
     %s             Print the version number.
     %s        Print your extended public key.
