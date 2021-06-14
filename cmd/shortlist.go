@@ -23,6 +23,7 @@ func (cmd *ShortlistCmd) Run() error {
 		PRIVATE_KEY_CMD,
 		PUBLIC_KEY_CMD,
 		VERSION_CMD,
+		X_PRIVATE_KEY_CMD,
 		X_PUBLIC_KEY_CMD,
 	}, " ")
 	fmt.Println(output)
