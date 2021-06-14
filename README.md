@@ -59,6 +59,7 @@ Below is list of commands and their behavior.
 - `principal` prints your principal identifier.
 - `private-key` derives your private key and writes it to a file.
 - `public-key` prints your public key.
+- `shortlist` prints the available commands.
 - `version` prints the version number.
 - `x-private-key` derives your extended private key and writes it to a file.
 - `x-public-key` prints your extended public key.
