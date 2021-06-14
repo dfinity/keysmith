@@ -38,6 +38,8 @@ func main() {
 		err = cmd.NewPrivateKeyCmd().Run()
 	case cmd.PUBLIC_KEY_CMD:
 		err = cmd.NewPublicKeyCmd().Run()
+	case cmd.SHORTLIST_CMD:
+		err = cmd.NewShortlistCmd().Run()
 	case cmd.VERSION_CMD:
 		err = cmd.NewVersionCmd(version()).Run()
 	case cmd.X_PRIVATE_KEY_CMD:
