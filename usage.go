@@ -18,6 +18,7 @@ Available Commands:
     %s          Print your public key.
     %s           Print the available commands.
     %s             Print the version number.
+    %s       Derive your extended private key and write it to a file.
     %s        Print your extended public key.
 `,
 		cmd.ACCOUNT_CMD,
@@ -28,6 +29,7 @@ Available Commands:
 		cmd.PUBLIC_KEY_CMD,
 		cmd.SHORTLIST_CMD,
 		cmd.VERSION_CMD,
+		cmd.X_PRIVATE_KEY_CMD,
 		cmd.X_PUBLIC_KEY_CMD,
 	)
 }

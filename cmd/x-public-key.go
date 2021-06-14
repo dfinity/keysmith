@@ -22,7 +22,7 @@ type XPublicKeyCmdArgs struct {
 }
 
 func NewXPublicKeyCmd() *XPublicKeyCmd {
-	fset := flag.NewFlagSet(PUBLIC_KEY_CMD, flag.ExitOnError)
+	fset := flag.NewFlagSet(X_PUBLIC_KEY_CMD, flag.ExitOnError)
 	args := &XPublicKeyCmdArgs{
 		SeedFile:  fset.String("f", "seed.txt", "Seed file."),
 		Protected: fset.Bool("p", false, "Password protection."),
