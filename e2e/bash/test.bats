@@ -25,14 +25,47 @@ teardown() {
     assert_match "^([a-z]+( |$)){12}"
 }
 
+@test "Can generate the seed phrase and print it to stdout" {
+    assert_command $keysmith generate -o=-
+    assert_match "^([a-z]+( |$)){12}"
+}
+
 @test "Cannot overwrite the seed phrase" {
     assert_command_fail $keysmith generate
     assert_eq "Error: Output file already exists: seed.txt"
 }
 
-@test "Can print the seed phrase to stdout" {
-    assert_command $keysmith generate -o=-
-    assert_match "^([a-z]+( |$)){12}"
+@test "Can derive the extended private key using input from a file" {
+    assert_command $keysmith x-private-key
+    assert_command cat identity.bip32
+    assert_eq "xprv9yPcfi4GmpvHJSAq8uqytXTYCFUGJsjCRUwjwLn5CJcv4bKg9S3XGN9Y53GSUCTdtZ4UHVkmDJGH1bPkPqoFGButnUiMbZNFDBqPM9JGrmH"
+}
+
+@test "Can derive the extended private key using input from stdin" {
+    assert_command bash -c "cat seed.txt | $keysmith x-private-key -f=-"
+    assert_command cat identity.bip32
+    assert_eq "xprv9yPcfi4GmpvHJSAq8uqytXTYCFUGJsjCRUwjwLn5CJcv4bKg9S3XGN9Y53GSUCTdtZ4UHVkmDJGH1bPkPqoFGButnUiMbZNFDBqPM9JGrmH"
+}
+
+@test "Can derive the extended private key using alternate input forms" {
+    for word in $(cat seed.txt); do
+        echo $word >> alternate.txt
+    done
+    assert_command $keysmith x-private-key -f=alternate.txt
+    assert_command cat identity.bip32
+    assert_eq "xprv9yPcfi4GmpvHJSAq8uqytXTYCFUGJsjCRUwjwLn5CJcv4bKg9S3XGN9Y53GSUCTdtZ4UHVkmDJGH1bPkPqoFGButnUiMbZNFDBqPM9JGrmH"
+}
+
+@test "Can derive the extended private key and print it to stdout" {
+    assert_command $keysmith generate -o=alternate.txt
+    assert_command $keysmith x-private-key -f=alternate.txt -o=- 
+    assert_match "^xprv[A-HJ-NP-Za-km-z1-9]"
+}
+
+@test "Cannot overwrite the extended private key" {
+    assert_command $keysmith x-private-key
+    assert_command_fail $keysmith x-private-key
+    assert_eq "Error: Output file already exists: identity.bip32"
 }
 
 @test "Can derive the private key using input from a file" {
@@ -253,12 +286,6 @@ N3d26cRxD99TPtm8uo2OuzKhSiq6EQ==
 -----END EC PRIVATE KEY-----" "$stdout"
 }
 
-@test "Cannot overwrite the private key" {
-    assert_command $keysmith private-key
-    assert_command_fail $keysmith private-key
-    assert_eq "Error: Output file already exists: identity.pem"
-}
-
 @test "Can derive the private key and print it to stdout" {
     assert_command $keysmith generate -o=alternate.txt
     assert_command $keysmith private-key -f=alternate.txt -o=- 
@@ -276,6 +303,12 @@ BgUrgQQACg==
     assert_command $keysmith generate -o=alternate.txt
     assert_command $keysmith private-key -f=alternate.txt
     assert_command openssl pkey -in identity.pem
+}
+
+@test "Cannot overwrite the private key" {
+    assert_command $keysmith private-key
+    assert_command_fail $keysmith private-key
+    assert_eq "Error: Output file already exists: identity.pem"
 }
 
 @test "Can derive the extended public key using input from a file" {
