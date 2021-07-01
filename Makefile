@@ -1,5 +1,5 @@
 MAJOR ?= 1
-MINOR ?= 5
+MINOR ?= 6
 PATCH ?= 0
 
 LDFLAGS := -X=main.MAJOR=$(MAJOR)
