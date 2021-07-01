@@ -22,6 +22,7 @@ func (cmd *ShortlistCmd) Run() error {
 		PRINCIPAL_CMD,
 		PRIVATE_KEY_CMD,
 		PUBLIC_KEY_CMD,
+		SHORTLIST_CMD,
 		VERSION_CMD,
 		X_PRIVATE_KEY_CMD,
 		X_PUBLIC_KEY_CMD,
