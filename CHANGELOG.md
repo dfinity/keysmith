@@ -1,5 +1,7 @@
-## v1.5.1
+## v1.6.0
 
+- Add `shortlist` command to print the available commands.
+- Add `x-private-key` command to derive your extended private key and write it to a file.
 - Normalize mnemonic seed input to use the space character as its field separator.
 
 ## v1.5.0
