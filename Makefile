@@ -30,7 +30,7 @@ release:
 	# Create checksum file.
 	> SHA256.SUM
 
-	# Create completions script.
+	# Create release script for tab completions.
 	openssl dgst -sha256 keysmith-completions.bash >> SHA256.SUM
 	cp keysmith-completions.bash release
 
@@ -70,7 +70,7 @@ release:
 	openssl dgst -sha256 keysmith-windows-amd64.tar.gz >> SHA256.SUM
 	mv keysmith-windows-amd64.tar.gz release
 
-	# Sign release tarballs.
+	# Sign release scripts and tarballs.
 	openssl dgst -out SHA256.SIG -sha256 -sign $(PRIVATE_KEY) SHA256.SUM
 	mv SHA256.SIG SHA256.SUM release
 
