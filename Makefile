@@ -30,43 +30,47 @@ release:
 	# Create checksum file.
 	> SHA256.SUM
 
-	# Create release for darwin/amd64.
+	# Create completions script.
+	openssl dgst -sha256 keysmith-completions.bash >> SHA256.SUM
+	cp keysmith-completions.bash release
+
+	# Create release tarball for darwin/amd64.
 	GOOS=darwin GOARCH=amd64 go build $(GOFLAGS)
 	tar -c -f keysmith-darwin-amd64.tar.gz -z keysmith
 	openssl dgst -sha256 keysmith-darwin-amd64.tar.gz >> SHA256.SUM
 	mv keysmith-darwin-amd64.tar.gz release
 
-	# Create release for darwin/arm64.
+	# Create release tarball for darwin/arm64.
 	GOOS=darwin GOARCH=arm64 go build $(GOFLAGS)
 	tar -c -f keysmith-darwin-arm64.tar.gz -z keysmith
 	openssl dgst -sha256 keysmith-darwin-arm64.tar.gz >> SHA256.SUM
 	mv keysmith-darwin-arm64.tar.gz release
 
-	# Create release for linux/amd64.
+	# Create release tarball for linux/amd64.
 	GOOS=linux GOARCH=amd64 go build $(GOFLAGS)
 	tar -c -f keysmith-linux-amd64.tar.gz -z keysmith
 	openssl dgst -sha256 keysmith-linux-amd64.tar.gz >> SHA256.SUM
 	mv keysmith-linux-amd64.tar.gz release
 
-	# Create release for linux/arm32.
+	# Create release tarball for linux/arm32.
 	GOOS=linux GOARCH=arm go build $(GOFLAGS)
 	tar -c -f keysmith-linux-arm32.tar.gz -z keysmith
 	openssl dgst -sha256 keysmith-linux-arm32.tar.gz >> SHA256.SUM
 	mv keysmith-linux-arm32.tar.gz release
 
-	# Create release for linux/arm64.
+	# Create release tarball for linux/arm64.
 	GOOS=linux GOARCH=arm64 go build $(GOFLAGS)
 	tar -c -f keysmith-linux-arm64.tar.gz -z keysmith
 	openssl dgst -sha256 keysmith-linux-arm64.tar.gz >> SHA256.SUM
 	mv keysmith-linux-arm64.tar.gz release
 
-	# Create release for windows/amd64.
+	# Create release tarball for windows/amd64.
 	GOOS=windows GOARCH=amd64 go build $(GOFLAGS)
 	tar -c -f keysmith-windows-amd64.tar.gz -z keysmith.exe
 	openssl dgst -sha256 keysmith-windows-amd64.tar.gz >> SHA256.SUM
 	mv keysmith-windows-amd64.tar.gz release
 
-	# Sign release binaries.
+	# Sign release tarballs.
 	openssl dgst -out SHA256.SIG -sha256 -sign $(PRIVATE_KEY) SHA256.SUM
 	mv SHA256.SIG SHA256.SUM release
 
