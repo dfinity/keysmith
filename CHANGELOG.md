@@ -1,3 +1,7 @@
+## v1.6.1
+
+- Upgrade encoding library.
+
 ## v1.6.0
 
 - Add `shortlist` command to print the available commands.
@@ -18,7 +22,7 @@
 
 ## v1.3.0
 
-- Upgrade HD crypto library dependency.
+- Upgrade crypto library dependency.
 
 ## v1.2.0
 
