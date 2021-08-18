@@ -60,3 +60,12 @@ func EncodeECPubKey(pubKey *btcec.PublicKey) ([]byte, error) {
 		},
 	})
 }
+
+func EncodeECSig(sig *btcec.Signature) []byte {
+	var buf [64]byte
+	r := sig.R.Bytes()
+	s := sig.S.Bytes()
+	copy(buf[(32-len(r)):], r)
+	copy(buf[(64-len(s)):], s)
+	return buf[:]
+}
