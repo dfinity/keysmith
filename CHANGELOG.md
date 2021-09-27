@@ -1,3 +1,7 @@
+## v1.6.2
+
+- Add support for seed phrases of different sizes.
+
 ## v1.6.1
 
 - Upgrade encoding library.
