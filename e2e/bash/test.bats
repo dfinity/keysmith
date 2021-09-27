@@ -23,6 +23,21 @@ teardown() {
     assert_command $keysmith generate -o=alternate.txt
     assert_command cat alternate.txt
     assert_match "^([a-z]+( |$)){12}"
+    assert_command $keysmith generate -b=128 -o=alternate12.txt
+    assert_command cat alternate12.txt
+    assert_match "^([a-z]+( |$)){12}"
+    assert_command $keysmith generate -b=160 -o=alternate15.txt
+    assert_command cat alternate15.txt
+    assert_match "^([a-z]+( |$)){15}"
+    assert_command $keysmith generate -b=192 -o=alternate18.txt
+    assert_command cat alternate18.txt
+    assert_match "^([a-z]+( |$)){18}"
+    assert_command $keysmith generate -b=224 -o=alternate21.txt
+    assert_command cat alternate21.txt
+    assert_match "^([a-z]+( |$)){21}"
+    assert_command $keysmith generate -b=256 -o=alternate24.txt
+    assert_command cat alternate24.txt
+    assert_match "^([a-z]+( |$)){24}"
 }
 
 @test "Can generate the seed phrase and print it to stdout" {
@@ -58,7 +73,7 @@ teardown() {
 
 @test "Can derive the extended private key and print it to stdout" {
     assert_command $keysmith generate -o=alternate.txt
-    assert_command $keysmith x-private-key -f=alternate.txt -o=- 
+    assert_command $keysmith x-private-key -f=alternate.txt -o=-
     assert_match "^xprv[A-HJ-NP-Za-km-z1-9]"
 }
 
@@ -288,7 +303,7 @@ N3d26cRxD99TPtm8uo2OuzKhSiq6EQ==
 
 @test "Can derive the private key and print it to stdout" {
     assert_command $keysmith generate -o=alternate.txt
-    assert_command $keysmith private-key -f=alternate.txt -o=- 
+    assert_command $keysmith private-key -f=alternate.txt -o=-
     assert_match "^-----BEGIN EC PARAMETERS-----
 BgUrgQQACg==
 -----END EC PARAMETERS-----
