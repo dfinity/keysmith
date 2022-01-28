@@ -2,5 +2,5 @@
 set -ex
 
 # Install Bats Core.
-brew unlink bats
+brew unlink bats || :
 brew install bats-core
