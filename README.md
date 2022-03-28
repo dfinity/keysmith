@@ -1,3 +1,13 @@
+# Migrate to [quill](https://github.com/dfinity/quill)
+
+To provide a unified user experience, we recommand [`quill`](https://github.com/dfinity/quill) which provide more comprehensive support for ledger and governance on the Internet Computer.
+
+We will not add new features to `keysmith` or release new versions. 
+
+Please refer to this [migration guide](quill_migration.md) to get the `quill` equivalents of `keysmith` commands.
+
+Note that some sophasicated functionalities are not available in quill yet. If your workflow relies on those `keysmith` commands, you can keep using it.
+
 # Keysmith
 
 Hierarchical Deterministic Key Derivation for the Internet Computer
